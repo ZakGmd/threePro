@@ -6,7 +6,10 @@ export default {
   ],
   theme: {
     extend: {
-    
+      fontFamily: {
+        'space-mono': ['Space Mono', 'serif'],
+        'inter': ['Inter','serif']
+      },
     },
   },
   plugins: [],
