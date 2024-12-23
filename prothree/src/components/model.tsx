@@ -1,12 +1,16 @@
 import * as THREE from 'three'
 import { useGLTF, } from '@react-three/drei'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useControls, folder } from 'leva'
 
-export default function Model() {
-  const { nodes, scene } = useGLTF('/asofa.glb')
- 
+type ModelProps = {
+    modelPath: string;
+  }
+  
+export default function Model({ modelPath } : ModelProps) {
+  const { nodes, scene } = useGLTF(modelPath)
+  const modelRef = useRef<THREE.Group>(null)
   const [showHelpers, setShowHelpers] = useState(true)
 
   const {
@@ -36,6 +40,12 @@ export default function Model() {
       }
     })
   })
+  useEffect(() => {
+    
+    useGLTF.preload('/sofa.glb')
+    useGLTF.preload('/sofaa.glb')
+  
+  }, [])
 
 
 
@@ -45,7 +55,7 @@ export default function Model() {
       {showAxes && <axesHelper args={[5]} />}
       
       <group 
-        
+        ref={modelRef}
         position={[modelPosition.x, modelPosition.y, modelPosition.z]}
         scale={modelScale}
       >
@@ -64,4 +74,3 @@ export default function Model() {
   )
 }
 
-useGLTF.preload('/asofa.glb')
