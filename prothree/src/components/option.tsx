@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface CustomizeViewProps {
     selectedSofa: {
       id: number;
@@ -9,9 +11,10 @@ interface CustomizeViewProps {
   }
   
   export default function CustomizeView({ selectedSofa, onBack }: CustomizeViewProps) {
+    const [setMaterial , selectedMaterial] = useState<number>(0)
     console.log('sofa',{selectedSofa})
     return (
-      <div className='flex flex-col items-baseline pt-[160px] gap-[60px]'>
+      <div className='flex flex-col items-baseline pt-[160px] gap-[120px]'>
         <div className='flex flex-col items-baseline gap-2'>
           <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
             Customize your sofa
@@ -20,7 +23,7 @@ interface CustomizeViewProps {
             Make it yours
           </div>
         </div>
-        <div className='flex flex-col gap-8 w-full'>
+        <div className='flex flex-col gap-7 w-full'>
           <div className='flex flex-col gap-4'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
               Choose Color
@@ -35,17 +38,25 @@ interface CustomizeViewProps {
               ))}
             </div>
           </div>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
               Choose Material
             </div>
             <div className='flex flex-col gap-3'>
-              {['Leather', 'Velvet', 'Linen', 'Cotton'].map((material) => (
+              {[{id:1 ,name:'Leather'}, {id:2 ,name:'Velvet'}, {id:3 , name:'Linen'}, {id:4, name:'Cotton'}].map((material,index) => (
                 <button
-                  key={material}
-                  className='flex items-center gap-4 py-3 px-4 bg-[#F5F5F5] rounded-[6px] hover:bg-[#E5E5E5] transition-all'
+                  key={material.id}
+                  onClick={()=> selectedMaterial(index)}
+                  className={`
+                    flex items-center gap-4 py-3 px-4 
+                     rounded-[6px] 
+                     border
+                    hover:border-[#df531b] transition-all
+                     duration-300
+                    ${setMaterial === index ? 'border-[#DF521B] ': 'border-gray-300 ' }
+                    `}
                 >
-                  {material}
+                  {material.name}
                 </button>
               ))}
             </div>
