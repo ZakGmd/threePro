@@ -11,7 +11,7 @@ interface CustomizeViewProps {
   }
   
   export default function CustomizeView({ selectedSofa, onBack }: CustomizeViewProps) {
-    const [setMaterial , selectedMaterial] = useState<number>(0)
+    const [setMaterial , selectedMaterial] = useState<number>(0 )
     console.log('sofa',{selectedSofa})
     return (
       <div className='flex flex-col items-baseline pt-[160px] gap-[120px]'>
@@ -50,10 +50,10 @@ interface CustomizeViewProps {
                   className={`
                     flex items-center gap-4 py-3 px-4 
                      rounded-[6px] 
-                     border
+                     border-2
                     hover:border-[#df531b] transition-all
                      duration-300
-                    ${setMaterial === index ? 'border-[#DF521B] ': 'border-gray-300 ' }
+                    ${setMaterial === index ? 'border-[#DF521B] ': 'border-gray-100 ' }
                     `}
                 >
                   {material.name}
@@ -61,7 +61,7 @@ interface CustomizeViewProps {
               ))}
             </div>
           </div>
-          <div className='mt-10 flex justify-between items-center w-full'>
+          <div className='mt-8 flex justify-between items-center w-full'>
             <button
               onClick={onBack}
               className='py-3 px-4 border border-black rounded-[48px] hover:bg-black/5 transition-colors'

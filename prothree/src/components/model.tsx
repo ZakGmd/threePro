@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { useGLTF, } from '@react-three/drei'
+import { useGLTF, useTexture, } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 
 import { useControls, folder } from 'leva'
@@ -12,6 +12,32 @@ export default function Model({ modelPath } : ModelProps) {
   const { nodes, scene } = useGLTF(modelPath)
   const modelRef = useRef<THREE.Group>(null)
   const [showHelpers, setShowHelpers] = useState(true)
+  const textures = new Map([
+    ['Object_110', useTexture('/texture.png')],
+  ])
+  useEffect(() => {
+    scene.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        child.castShadow = true
+        child.receiveShadow = true
+
+        const texture = textures.get(child.name)
+        console.log(child.name) 
+        if (texture) {
+          texture.flipY = false
+          texture.wrapS = texture.wrapT = THREE.RepeatWrapping
+          child.material = new THREE.MeshStandardMaterial({
+            map: texture,
+            metalness: 0.2 ,
+            color: '#ef4444',
+       
+            
+            flatShading: true,
+          })
+        }
+      }
+    })
+  }, [scene, textures])
 
   const {
     showGrid,

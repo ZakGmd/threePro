@@ -12,7 +12,7 @@ interface Sofa {
   modelPath: string;
 }
 function App() {
-  const [selectedSofa, setSelectedSofa] = useState<number>(0) 
+  const [selectedSofa, setSelectedSofa] = useState<number>(1) 
   const [currentStep, setCurrentStep] = useState<'select' | 'customize'>('select')
   const sofas: Sofa[] = [
     {
