@@ -43,7 +43,7 @@ function App() {
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono '>Your comfort matters.</div>
             <div className='text-[32px] tracking-[-0.32px] leading-normal font-inter '>Your sofa, your rules <br /> Design your dream seat</div>
            </div>
-           <div className='flex flex-col items-  gap-2 w-full'>
+           <div className='flex flex-col items-baseline  gap-2 w-full'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal  font-space-mono'>Choose your Model</div>
             <div className='flex flex-col items-start  gap-3 w-full font-inter'>
             {sofas.map((sofa, index) => (
