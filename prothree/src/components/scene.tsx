@@ -14,7 +14,7 @@ export default function Scene({ selectedModel } : SceneProps) {
         id="canvas-container"
         camera={{ position: [0, 0.5, 3], fov: 45, far: 5000} }
         gl={{ preserveDrawingBuffer: true }} 
-        style={{ width: '100%', height: '100%'  }}
+        style={{ width: '100%', height: '100%' , background: '#f9fafb'  }}
       
       >
         <Suspense fallback={null}>
