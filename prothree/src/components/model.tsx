@@ -44,10 +44,12 @@ export default function Model({ modelPath } : ModelProps) {
     
     useGLTF.preload('/sofa.glb')
     useGLTF.preload('/sofaa.glb')
-  
+    useGLTF.preload('/armchair.glb')
+
+    
   }, [])
 
-
+console.log({nodes})
 
   return (
     <>

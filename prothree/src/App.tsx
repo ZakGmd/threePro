@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import './App.css'
 import Scene from './components/scene'
+import CustomizeView from './components/option';
 
 interface Sofa {
   id: number;
@@ -12,6 +13,7 @@ interface Sofa {
 }
 function App() {
   const [selectedSofa, setSelectedSofa] = useState<number>(0) 
+  const [currentStep, setCurrentStep] = useState<'select' | 'customize'>('select')
   const sofas: Sofa[] = [
     {
       id: 1,
@@ -29,15 +31,14 @@ function App() {
       id: 3,
       name: "Modern Sofa — Limited edition",
       dimensions: "3.5m x 2.4m with custom colors",
-      modelPath: "" 
+      modelPath: "/armchair.glb" 
     }
   ]
-
-  return (
-    <>
-     <div className='flex items-start gap-[10] h-[100vh] w-full '>
-      <div className='h-full w-[700px] ml-[148px] pl-[32px] pr-[28px] border-r border-l border-gray-300 '>
-        <div className='flex flex-col items-baseline pt-[160px] gap-[180px]'>
+  const renderStepContent = () => {
+    switch(currentStep){
+      case 'select' :
+        return(
+          <div className='flex flex-col items-baseline pt-[160px] gap-[180px]'>
            <div className='flex flex-col items-baseline gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono '>Your comfort matters.</div>
             <div className='text-[32px] tracking-[-0.32px] leading-normal font-inter '>Your sofa, your rules <br /> Design your dream seat</div>
@@ -70,7 +71,7 @@ function App() {
               ))}
             </div>
             <div className='mt-10 flex w-full justify-end'>
-              <div className=' py-3 px-4 bg-black text-white rounded-[48px]'>
+              <div className=' py-3 px-4 bg-black text-white cursor-pointer rounded-[48px]'  onClick={() => setCurrentStep('customize')}>
                 <div>Next</div>
                 <div></div>
               </div>
@@ -78,6 +79,18 @@ function App() {
 
            </div>
         </div>
+        )
+        case 'customize':
+        return <CustomizeView selectedSofa={sofas[selectedSofa]} onBack={() => setCurrentStep('select')} />
+    }
+    }
+  
+
+  return (
+    <>
+     <div className='flex items-start gap-[10] h-[100vh] w-full '>
+      <div className='h-full w-[700px] ml-[148px] pl-[32px] pr-[28px] border-r border-l border-gray-300 '>
+        {renderStepContent()}
       </div>
       <div className='w-full h-full'>
         <Scene selectedModel={sofas[selectedSofa].modelPath} />
