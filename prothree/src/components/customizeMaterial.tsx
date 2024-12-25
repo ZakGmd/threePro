@@ -1,16 +1,8 @@
 import { useState } from "react";
+import { CustomizeViewProps } from "../types/types";
 
-interface CustomizeViewProps {
-    selectedSofa: {
-      id: number;
-      name: string;
-      dimensions: string;
-      modelPath: string;
-    };
-    onBack: () => void;
-  }
-  
-  export default function CustomizeView({ selectedSofa, onBack }: CustomizeViewProps) {
+
+  export default function CustomizeMaterial({ selectedSofa, onBack }: CustomizeViewProps) {
     const [setMaterial , selectedMaterial] = useState<number>(0 )
     console.log('sofa',{selectedSofa})
     return (

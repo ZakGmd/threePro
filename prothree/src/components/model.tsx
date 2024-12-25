@@ -4,6 +4,61 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useControls, folder } from 'leva'
 
+interface PillowCustomization {
+  texture?: string;
+  color?: string;
+  material?: string;
+  roughness?: number;
+  metalness?: number;
+}
+
+interface PillowNode {
+  id: string;
+  nodes: number[];
+  customization: PillowCustomization;
+}
+const PillowNodes = {
+  right: {
+    first: {
+      id: 'right_pillow_1',
+      nodes: [93, 94],
+      customization: {
+        color: '',
+        roughness: 1,
+        metalness: 0.2
+      }
+    },
+    second: {
+      id: 'right_pillow_2',
+      nodes: [106, 108, 109, 110],
+      customization: {
+        color: '',
+        roughness: 0.7,
+        metalness: 0.1
+      }
+    }
+  },
+  left: {
+    first: {
+      id: 'left_pillow_1',
+      nodes: [104, 107],
+      customization: {
+        color: '#0c0a09',
+        roughness: 9,
+        metalness: 0.1
+      }
+    },
+    second: {
+      id: 'left_pillow_2',
+      nodes: [95, 96, 97, 98, 99, 100, 101, 102],
+      customization: {
+        color: '#022c22',
+        roughness: 10,
+        metalness: 0.01
+      }
+    }
+  }
+};
 type ModelProps = {
     modelPath: string;
   }
@@ -12,32 +67,29 @@ export default function Model({ modelPath } : ModelProps) {
   const { nodes, scene } = useGLTF(modelPath)
   const modelRef = useRef<THREE.Group>(null)
   const [showHelpers, setShowHelpers] = useState(true)
-  const textures = new Map([
-    ['Object_110', useTexture('/texture.png')],
-  ])
-  useEffect(() => {
-    scene.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        child.castShadow = true
-        child.receiveShadow = true
 
-        const texture = textures.get(child.name)
-        console.log(child.name) 
-        if (texture) {
-          texture.flipY = false
-          texture.wrapS = texture.wrapT = THREE.RepeatWrapping
-          child.material = new THREE.MeshStandardMaterial({
-            map: texture,
-            metalness: 0.2 ,
-            color: '#ef4444',
-       
-            
-            flatShading: true,
-          })
-        }
-      }
-    })
-  }, [scene, textures])
+  console.log(Object.values(PillowNodes))
+  
+
+  useEffect(() => {
+    if (scene) {
+      Object.values(PillowNodes).forEach(side => {
+        Object.values(side).forEach(pillow => {
+          pillow.nodes.forEach(nodeId => {
+            const node = nodes[`Object_${nodeId}`];
+            if (node) {
+              const { color, roughness, metalness } = pillow.customization;
+              if (node instanceof THREE.Mesh) {
+                node.material.color.set(color);
+                node.material.roughness = roughness;
+                node.material.metalness = metalness;
+              }
+            }
+          });
+        });
+      });
+    }
+  }, [scene]);
 
   const {
     showGrid,
