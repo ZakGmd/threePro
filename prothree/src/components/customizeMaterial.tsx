@@ -6,7 +6,7 @@ import { CustomizeViewProps } from "../types/types";
     const [setMaterial , selectedMaterial] = useState<number>(0 )
     console.log('sofa',{selectedSofa})
     return (
-      <div className='flex flex-col items-baseline pt-[160px] gap-[120px]'>
+      <div className='flex flex-col items-baseline pt-[160px] gap-[120px] '>
         <div className='flex flex-col items-baseline gap-2'>
           <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
             Customize your sofa
@@ -16,7 +16,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
         </div>
         <div className='flex flex-col gap-7 w-full'>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
               Chose frame material 
             </div>
@@ -30,7 +30,7 @@ import { CustomizeViewProps } from "../types/types";
               ))}
             </div>
           </div>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
               Chose seat color 
             </div>
@@ -50,17 +50,43 @@ import { CustomizeViewProps } from "../types/types";
               ))}
             </div>
           </div>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-             Want some color ideas ?
+              Chose pillow color 
             </div>
-            <div className='flex gap-4'>
-              {['#000000', '#DF521B', '#4A90E2'].map((color) => (
-                <button
-                  key={color}
-                  className='w-10 h-10 rounded-full border-2 border-transparent hover:border-black transition-all'
-                  style={{ backgroundColor: color }}
-                />
+            <div className='flex items-center gap-3'>
+              {[{name:'Light Khaki' , color: ' #D6C9AF'}, {name:'Emerald Green', color: '#022c22'},  {name:'Dark Charcoal', color: '#0c0a09'}].map((frame) => (
+                <div
+                  key={frame.name}
+                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${frame.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : frame.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  
+                >
+                 <div
+                  className='w-3 h-3   rounded-full'
+                  style={{ backgroundColor: frame.color }}
+                  />
+                  <div className="text-[14px]  leading-normal">{frame.name}</div>
+                </div> 
+              ))}
+            </div>
+          </div>
+          <div className='flex flex-col gap-2'>
+            <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
+              Chose embroidery color 
+            </div>
+            <div className='flex items-center gap-3'>
+              {[{name:'Metallic Gold' , color: '#D4AF37'}, {name:'Cool Silver', color: '#C0C0C0'},  {name:'Soft Cream', color: '#F9F9E0'}].map((frame) => (
+                <div
+                  key={frame.name}
+                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${frame.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : frame.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  
+                >
+                 <div
+                  className='w-3 h-3   rounded-full'
+                  style={{ backgroundColor: frame.color }}
+                  />
+                  <div className="text-[14px]  leading-normal">{frame.name}</div>
+                </div> 
               ))}
             </div>
           </div>
@@ -68,26 +94,20 @@ import { CustomizeViewProps } from "../types/types";
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
               Choose Material
             </div>
-            <div className='flex flex-col gap-3'>
-              {[{id:1 ,name:'Leather'}, {id:2 ,name:'Velvet'}, {id:3 , name:'Linen'}, {id:4, name:'Cotton'}].map((material,index) => (
-                <button
-                  key={material.id}
-                  onClick={()=> selectedMaterial(index)}
-                  className={`
-                    flex items-center gap-4 py-3 px-4 
-                     rounded-[6px] 
-                     border-2
-                    hover:border-[#df531b] transition-all
-                     duration-300
-                    ${setMaterial === index ? 'border-[#DF521B] ': 'border-gray-100 ' }
-                    `}
+            <div className='flex items-center gap-3'>
+              {[{id:1 ,name:'Leather',imgPath:'./leather.jpg'}, {id:2 ,name:'Velvet',imgPath:'./velvet.jpg'}, {id:3 , name:'Linen',imgPath:'./linen.jpeg'}].map((material,index) => (
+               <div 
+                 key={material.id}
+                 className="flex items-center gap-1 font-inter hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all px-2 py-1"
+                 onClick={()=> selectedMaterial(index)}
                 >
-                  {material.name}
-                </button>
+                 <img src={material.imgPath} className="h-3 w-3 rounded-full " />
+                 <div className="text-[14px]  leading-normal">{material.name}</div>
+               </div>
               ))}
             </div>
           </div>
-          <div className='mt-8 flex justify-between items-center w-full'>
+          <div className='my-8 flex justify-between items-center w-full'>
             <button
               onClick={onBack}
               className='py-3 px-4 border border-black rounded-[48px] hover:bg-black/5 transition-colors'

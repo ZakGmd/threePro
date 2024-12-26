@@ -54,8 +54,8 @@ function App() {
 
   return (
     <>
-     <div className='flex items-start gap-[10] h-[100vh] w-full '>
-      <div className='h-full w-[700px] ml-[148px] pl-[32px] pr-[28px] border-r border-l border-gray-300 '>
+     <div className='flex items-start gap-[10] h-[100vh] w-full overflow-hidden '>
+      <div className='container h-full w-[700px] ml-[148px] pl-[32px] pr-[28px] border-r border-l border-gray-300 overflow-y-scroll  '>
         {renderStepContent()}
       </div>
       <div className='w-full h-full'>
