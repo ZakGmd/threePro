@@ -18,7 +18,21 @@ import { CustomizeViewProps } from "../types/types";
         <div className='flex flex-col gap-7 w-full'>
           <div className='flex flex-col gap-4'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Choose Color
+              Chose frame material 
+            </div>
+            <div className='flex gap-3'>
+              {[{name:'Wood' , color: ' #A1662F'}, {name:'Marble', color: ''},  {name:'Gold', color: ''}].map((frame) => (
+                <div
+                  key={frame.name}
+                  className={`px-2 py-1  ${frame.name === 'Gold' ? 'px-[11px] hover:bg-[#d4af376e] ' : frame.name === 'Marble' ? 'hover:bg-[#e1e4e2]': 'hover:bg-[#a1662f83]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+               
+                >{frame.name} </div> 
+              ))}
+            </div>
+          </div>
+          <div className='flex flex-col gap-4'>
+            <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
+             Want some color ideas ?
             </div>
             <div className='flex gap-4'>
               {['#000000', '#DF521B', '#4A90E2'].map((color) => (
