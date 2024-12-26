@@ -3,14 +3,11 @@ export type ModelProps = {
     modelPath: string;
 }
 export interface MaterialCustomization{
-    texture?: string;
     color?: string;
     material?: string;
-    roughness?: number;
-    metalness?: number;
 }
 export interface SofaNode {
-  id: string;
+  id: number;
   nodes: number[];
   customization: MaterialCustomization;
 }
@@ -34,8 +31,10 @@ export interface custumizeSelectProps {
     sofas: Sofa[];
     selectedSofa: number;
     onNext: () => void;
+    
  
 } 
+
     
 
 
