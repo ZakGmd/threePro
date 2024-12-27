@@ -2,28 +2,54 @@
 export type ModelProps = {
     modelPath: string;
 }
-export interface MaterialCustomization{
-    color?: string;
-    material?: string;
+
+export interface MaterialCustomization {
+  frame?: string;
+  seatColor?: string;
+  pillowColor?: string;
+  embroideryColor?: string;
+  material?: string;
 }
+
+export interface NodeStructure {
+  frame?: number[];
+  seat?: number[];
+  embroidery?: number[];
+  pillows?: {
+    right: {
+      first: number[];
+      second: number[];
+    };
+    left: {
+      first: number[];
+      second: number[];
+    };
+  };
+}
+
 export interface SofaNode {
   id: number;
-  nodes: number[];
+  nodes?: NodeStructure;
   customization: MaterialCustomization;
+}
+export interface SofaNodeMappings {
+  [key: number]: NodeStructure;
 }
 export interface Sofa {
     id: number;
     name: string;
     dimensions: string;
     modelPath: string;
-  }
+}
 export interface CustomizeViewProps {
   selectedSofa: {
    id: number;
    name: string;
    dimensions: string;
    modelPath: string;
-};
+  };
+  materialChange: (type: keyof MaterialCustomization, value: string) => void;
+  material: SofaNode['customization'];
   onBack: () => void;
 }
 export interface custumizeSelectProps {
@@ -31,8 +57,6 @@ export interface custumizeSelectProps {
     sofas: Sofa[];
     selectedSofa: number;
     onNext: () => void;
-    
- 
 } 
 
     
@@ -41,57 +65,6 @@ export interface custumizeSelectProps {
 
 
  
-  
-
-
-
-
-
-
-
-const MaterialNodes = {
-    right: {
-      first: {
-        id: 'right_pillow_1',
-        nodes: [93, 94],
-        customization: {
-          color: '',
-          roughness: 1,
-          metalness: 0.2
-        }
-      },
-      second: {
-        id: 'right_pillow_2',
-        nodes: [106, 108, 109, 110],
-        customization: {
-          color: '',
-          roughness: 0.7,
-          metalness: 0.1
-        }
-      }
-    },
-    left: {
-      first: {
-        id: 'left_pillow_1',
-        nodes: [104, 107],
-        customization: {
-          color: '#0c0a09',
-          roughness: 9,
-          metalness: 0.1
-        }
-      },
-      second: {
-        id: 'left_pillow_2',
-        nodes: [95, 96, 97, 98, 99, 100, 101, 102],
-        customization: {
-          color: '#022c22',
-          roughness: 10,
-          metalness: 0.01
-        }
-      }
-    }
-};
-  
 
   
 

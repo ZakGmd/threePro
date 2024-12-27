@@ -1,10 +1,33 @@
-import { useState } from "react";
 import { CustomizeViewProps } from "../types/types";
 
 
-  export default function CustomizeMaterial({ selectedSofa, onBack }: CustomizeViewProps) {
-    const [setMaterial , selectedMaterial] = useState<number>(0 )
+  export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material }: CustomizeViewProps) {
+    const frames = [{id:1 ,name:'Wood', color: '#a1662f5e'}, {id: 2 ,name:'Marble', color:'#e1e4e2'}, {id: 3 ,name:'Gold', color:'#d4af376e'}];
+    const seatColors = [
+      {
+        id:1 ,
+        name:'Light Khaki', 
+        color:'#D6C9AF' , 
+        bgClr: '#d6c9af67' 
+      }, 
+      {
+        id: 2 ,
+        name:'Emerald Green', 
+        color:'#022c22', 
+        bgClr:'#022c2238'
+      }, 
+      {
+        id: 3 ,name:'Dark Charcoal', 
+        color:'#0c0a09',
+        bgClr:'#0c0a0938'
+      }
+    ];
+    const pillowColors = [{id:1 ,name:'Light Khaki', color:'#D6C9AF'}, {id: 2 ,name:'Emerald Green', color:'#022c22'}, {id: 3 ,name:'Dark Charcoal', color:'#0c0a09'}];
+    const embroideryColors = [{id:1 ,name:'Metallic Gold', color:'#D4AF37'}, {id: 2 ,name:'Cool Silver', color:'#C0C0C0'}, {id: 3 ,name:'Soft Cream', color:'#F9F9E0'}];
+    const materiales = [{id:1 ,name:'Leather',imgPath:'./leather.jpg'}, {id:2 ,name:'Velvet',imgPath:'./velvet.jpg'}, {id:3 , name:'Linen',imgPath:'./linen.jpeg'}]
     console.log('sofa',{selectedSofa})
+
+   
     return (
       <div className='flex flex-col items-baseline pt-[160px] gap-[120px] '>
         <div className='flex flex-col items-baseline gap-2'>
@@ -21,11 +44,15 @@ import { CustomizeViewProps } from "../types/types";
               Chose frame material 
             </div>
             <div className='flex gap-3'>
-              {[{name:'Wood' , color: ' #A1662F'}, {name:'Marble', color: ''},  {name:'Gold', color: ''}].map((frame) => (
+              {frames.map((frame) => (
                 <div
-                  key={frame.name}
-                  className={`px-2 py-1 text-[14px] font-inter  ${frame.name === 'Gold' ? 'px-[11px] hover:bg-[#d4af376e] ' : frame.name === 'Marble' ? 'hover:bg-[#e1e4e2]': 'hover:bg-[#a1662f5e]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
-               
+                  key={frame.id}
+                  className={`px-2 py-1 text-[14px] font-inter 
+                     ${frame.name === 'Gold' ? 'px-[11px] hover:bg-[#d4af376e]  ' : frame.name === 'Marble' ? 'hover:bg-[#e1e4e2]': 'hover:bg-[#a1662f5e]'}
+                     ${material.frame === frame.color ? `bg-[${frame.color}] shadow-md` : 'bg-trasparent'}
+                     hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  onClick={() => materialChange('frame', frame.color)}
+
                 >{frame.name} </div> 
               ))}
             </div>
@@ -35,17 +62,24 @@ import { CustomizeViewProps } from "../types/types";
               Chose seat color 
             </div>
             <div className='flex items-center gap-3'>
-              {[{name:'Light Khaki' , color: ' #D6C9AF'}, {name:'Emerald Green', color: '#022c22'},  {name:'Dark Charcoal', color: '#0c0a09'}].map((frame) => (
+              {seatColors.map((seat) => (
                 <div
-                  key={frame.name}
-                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${frame.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : frame.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
-                  
+                  key={seat.id}
+                  className={`
+                  flex items-center font-inter  gap-1 px-2 py-1 
+                  ${seat.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : seat.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} 
+                   ${material.seatColor === seat.color ? `  shadow-md` : ''}
+                  hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  style={{
+                    backgroundColor: material.seatColor === seat.color ? seat.bgClr : ''
+                  }}
+                  onClick={() => materialChange('seatColor', seat.color)}
                 >
                  <div
                   className='w-3 h-3   rounded-full'
-                  style={{ backgroundColor: frame.color }}
+                  style={{ backgroundColor: seat.color }}
                   />
-                  <div className="text-[14px]  leading-normal">{frame.name}</div>
+                  <div className="text-[14px]  leading-normal">{seat.name}</div>
                 </div> 
               ))}
             </div>
@@ -55,17 +89,17 @@ import { CustomizeViewProps } from "../types/types";
               Chose pillow color 
             </div>
             <div className='flex items-center gap-3'>
-              {[{name:'Light Khaki' , color: ' #D6C9AF'}, {name:'Emerald Green', color: '#022c22'},  {name:'Dark Charcoal', color: '#0c0a09'}].map((frame) => (
+              {pillowColors.map((pillow) => (
                 <div
-                  key={frame.name}
-                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${frame.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : frame.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
-                  
+                  key={pillow.name}
+                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${pillow.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : pillow.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  onClick={() => materialChange('pillowColor', pillow.color)}
                 >
                  <div
                   className='w-3 h-3   rounded-full'
-                  style={{ backgroundColor: frame.color }}
+                  style={{ backgroundColor: pillow.color }}
                   />
-                  <div className="text-[14px]  leading-normal">{frame.name}</div>
+                  <div className="text-[14px]  leading-normal">{pillow.name}</div>
                 </div> 
               ))}
             </div>
@@ -75,17 +109,17 @@ import { CustomizeViewProps } from "../types/types";
               Chose embroidery color 
             </div>
             <div className='flex items-center gap-3'>
-              {[{name:'Metallic Gold' , color: '#D4AF37'}, {name:'Cool Silver', color: '#C0C0C0'},  {name:'Soft Cream', color: '#F9F9E0'}].map((frame) => (
+              {embroideryColors.map((embroidery) => (
                 <div
-                  key={frame.name}
-                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${frame.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : frame.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
-                  
+                  key={embroidery.name}
+                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${embroidery.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : embroidery.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  onClick={() => materialChange('embroideryColor', embroidery.color)}
                 >
                  <div
                   className='w-3 h-3   rounded-full'
-                  style={{ backgroundColor: frame.color }}
+                  style={{ backgroundColor: embroidery.color }}
                   />
-                  <div className="text-[14px]  leading-normal">{frame.name}</div>
+                  <div className="text-[14px]  leading-normal">{embroidery.name}</div>
                 </div> 
               ))}
             </div>
@@ -95,11 +129,12 @@ import { CustomizeViewProps } from "../types/types";
               Choose Material
             </div>
             <div className='flex items-center gap-3'>
-              {[{id:1 ,name:'Leather',imgPath:'./leather.jpg'}, {id:2 ,name:'Velvet',imgPath:'./velvet.jpg'}, {id:3 , name:'Linen',imgPath:'./linen.jpeg'}].map((material,index) => (
+              {materiales.map((material,index) => (
                <div 
                  key={material.id}
                  className="flex items-center gap-1 font-inter hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all px-2 py-1"
-                 onClick={()=> selectedMaterial(index)}
+                 onClick={() => materialChange('material', material.name)}
+
                 >
                  <img src={material.imgPath} className="h-3 w-3 rounded-full " />
                  <div className="text-[14px]  leading-normal">{material.name}</div>

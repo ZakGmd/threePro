@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import './App.css'
 import Scene from './components/scene'
-import { Sofa, SofaNode } from './types/types';
+import { NodeStructure, Sofa, SofaNode, SofaNodeMappings } from './types/types';
 import SelectSofa from './components/selectedSofa';
 import CustomizeMaterial from './components/customizeMaterial';
 const sofas: Sofa[] = [
@@ -26,25 +26,95 @@ const sofas: Sofa[] = [
     modelPath: "/armchair.glb" 
   }
 ];
+
+const sofaNodeMappings: SofaNodeMappings = {
+
+  0: { 
+    pillows: {
+      right: {
+        first: [],
+        second: [] 
+      },
+      left: {
+        first: [], 
+        second: [] 
+      }
+    },
+    frame: [], 
+    seat: [],
+    embroidery: []
+  },
+  1: { 
+    pillows: {
+      right: {
+        first: [93, 94],
+        second: [106, 108, 109, 110]
+      },
+      left: {
+        first: [104, 107], 
+        second: [95, 96, 97, 98, 99, 100, 101, 102] 
+      }
+    },
+    frame: [],
+    seat: [],
+    embroidery: []
+  },
+  2: { 
+    pillows: {
+      right: {
+        first: [],
+        second: []
+      },
+      left: {
+        first: [], 
+        second: [] 
+      }
+    },
+    frame: [],
+    seat: [],
+    embroidery: []
+  }
+};
 function App() {
-  const [selectedSofa, setSelectedSofa] = useState<number>(1) ;
+  const [selectedSofa, setSelectedSofa] = useState<number>(0) ;
   const [currentStep, setCurrentStep] = useState<'select' | 'customize'>('select');
   const [materiales, setMaterial] = useState<SofaNode>({
     id: selectedSofa, 
-    nodes: [],
+    nodes: {
+      frame: sofaNodeMappings[selectedSofa].frame,
+      seat: sofaNodeMappings[selectedSofa].seat,
+      pillows: sofaNodeMappings[selectedSofa].pillows,
+      embroidery: sofaNodeMappings[selectedSofa].embroidery
+    },
     customization: {
-      color: '',
-      material: '' ,
-  }});
-  console.log('materialll',materiales.id)
+      frame: '' ,
+      seatColor: '' ,
+      pillowColor: '' ,
+      embroideryColor: '' ,
+      material: ''
+    }
+    });
+
   const handleSofaChange = (id: number) => {
     setSelectedSofa(id);
     setMaterial(prev =>({
       ...prev,
       id: id ,
+      nodes: sofaNodeMappings[id]
     }))
   }
-  
+  const handleMaterialChange = (materialType: string, value: string ) => {
+    setMaterial(prev => ({
+      ...prev,
+      customization: {
+        ...prev.customization,
+        [materialType]: value
+      }
+    }));
+  };
+  console.log('Mappings for selected sofa:', sofaNodeMappings[selectedSofa]);
+  console.log('Materials :',materiales);
+
   const renderStepContent = () => {
     switch(currentStep){
       case 'select' :
@@ -59,8 +129,10 @@ function App() {
         case 'customize':
         return(
           <CustomizeMaterial 
-            selectedSofa={sofas[selectedSofa]} 
+            selectedSofa={sofas[selectedSofa]}
             onBack={() => setCurrentStep('select')} 
+            materialChange={handleMaterialChange}  
+            material={materiales.customization}        
           />
         )
     }
