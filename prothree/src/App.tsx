@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import './App.css'
 import Scene from './components/scene'
-import { NodeStructure, Sofa, SofaNode, SofaNodeMappings } from './types/types';
+import { Sofa, SofaNode, SofaNodeMappings } from './types/types';
 import SelectSofa from './components/selectedSofa';
 import CustomizeMaterial from './components/customizeMaterial';
 const sofas: Sofa[] = [
@@ -32,16 +32,16 @@ const sofaNodeMappings: SofaNodeMappings = {
   0: { 
     pillows: {
       right: {
-        first: [],
-        second: [] 
+        first: [3],
+        second: [46] 
       },
       left: {
-        first: [], 
-        second: [] 
+        first: [26], 
+        second: [41] 
       }
     },
     frame: [], 
-    seat: [],
+    seat: [4,5],
     embroidery: []
   },
   1: { 
@@ -55,14 +55,14 @@ const sofaNodeMappings: SofaNodeMappings = {
         second: [95, 96, 97, 98, 99, 100, 101, 102] 
       }
     },
-    frame: [],
+    frame: [3,2,5],
     seat: [],
-    embroidery: []
+    embroidery: [96,97,98,99,102,109,110]
   },
   2: { 
     pillows: {
       right: {
-        first: [],
+        first: [60,62],
         second: []
       },
       left: {
@@ -71,12 +71,12 @@ const sofaNodeMappings: SofaNodeMappings = {
       }
     },
     frame: [],
-    seat: [],
-    embroidery: []
+    seat: [2,3,4],
+    embroidery: [61,63,64]
   }
 };
 function App() {
-  const [selectedSofa, setSelectedSofa] = useState<number>(0) ;
+  const [selectedSofa, setSelectedSofa] = useState<number>(1) ;
   const [currentStep, setCurrentStep] = useState<'select' | 'customize'>('select');
   const [materiales, setMaterial] = useState<SofaNode>({
     id: selectedSofa, 
@@ -112,7 +112,7 @@ function App() {
       }
     }));
   };
-  console.log('Mappings for selected sofa:', sofaNodeMappings[selectedSofa]);
+  
   console.log('Materials :',materiales);
 
   const renderStepContent = () => {

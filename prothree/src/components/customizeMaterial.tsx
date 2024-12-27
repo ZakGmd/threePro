@@ -2,7 +2,23 @@ import { CustomizeViewProps } from "../types/types";
 
 
   export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material }: CustomizeViewProps) {
-    const frames = [{id:1 ,name:'Wood', color: '#a1662f5e'}, {id: 2 ,name:'Marble', color:'#e1e4e2'}, {id: 3 ,name:'Gold', color:'#d4af376e'}];
+    const frames = [
+      {
+        id:1 ,
+        name:'Wood', 
+        color: '#a1662f5e'
+      }, 
+      {
+        id: 2 ,
+        name:'Marble', 
+        color:'#e1e4e2'
+      }, 
+      {
+        id: 3 ,
+        name:'Gold', 
+        color:'#d4af376e'
+      }
+    ];
     const seatColors = [
       {
         id:1 ,
@@ -22,9 +38,63 @@ import { CustomizeViewProps } from "../types/types";
         bgClr:'#0c0a0938'
       }
     ];
-    const pillowColors = [{id:1 ,name:'Light Khaki', color:'#D6C9AF'}, {id: 2 ,name:'Emerald Green', color:'#022c22'}, {id: 3 ,name:'Dark Charcoal', color:'#0c0a09'}];
-    const embroideryColors = [{id:1 ,name:'Metallic Gold', color:'#D4AF37'}, {id: 2 ,name:'Cool Silver', color:'#C0C0C0'}, {id: 3 ,name:'Soft Cream', color:'#F9F9E0'}];
-    const materiales = [{id:1 ,name:'Leather',imgPath:'./leather.jpg'}, {id:2 ,name:'Velvet',imgPath:'./velvet.jpg'}, {id:3 , name:'Linen',imgPath:'./linen.jpeg'}]
+    const pillowColors = [
+      {
+      id:1 ,
+      name:'Light Khaki', 
+      color:'#D6C9AF',
+      bgClr: '#d6c9af67' 
+    }, 
+    {
+      id: 2 ,
+      name:'Emerald Green', 
+      color:'#022c22' ,
+      bgClr:'#022c2238'
+    }, 
+    {
+      id: 3 ,
+      name:'Dark Charcoal', 
+      color:'#0c0a09' ,
+      bgClr:'#0c0a0938' 
+    }
+  ];
+    const embroideryColors = [
+      {
+        id:1 ,
+        name:'Metallic Gold', 
+        color:'#D4AF37' ,
+        bgClr:'#d4af376e'
+      }, 
+      {
+        id: 2 ,
+        name:'Cool Silver', 
+        color:'#C0C0C0' ,
+        bgClr: '#c0c0c063'
+      }, 
+      {
+        id: 3 ,
+        name:'Soft Cream', 
+        color:'#F9F9E0' ,
+        bgClr:'#d6c9af67'
+      }
+    ];
+    const materiales = [
+      {
+        id:1 ,
+        name:'Leather',
+        imgPath:'./leather.jpg'
+      }, 
+      {
+        id:2 ,
+        name:'Velvet',
+        imgPath:'./velvet.jpg'
+      }, 
+      {
+        id:3 , 
+        name:'Linen',
+        imgPath:'./linen.jpeg'
+      }
+    ]
     console.log('sofa',{selectedSofa})
 
    
@@ -52,7 +122,7 @@ import { CustomizeViewProps } from "../types/types";
                      ${material.frame === frame.color ? `bg-[${frame.color}] shadow-md` : 'bg-trasparent'}
                      hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
                   onClick={() => materialChange('frame', frame.color)}
-
+                  style={{ backgroundColor: material.frame === frame.color ? frame.color : '' }}
                 >{frame.name} </div> 
               ))}
             </div>
@@ -93,6 +163,7 @@ import { CustomizeViewProps } from "../types/types";
                 <div
                   key={pillow.name}
                   className={`flex items-center font-inter  gap-1 px-2 py-1  ${pillow.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : pillow.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  style={{ backgroundColor: material.pillowColor === pillow.color ? pillow.bgClr : '' }}
                   onClick={() => materialChange('pillowColor', pillow.color)}
                 >
                  <div
@@ -112,6 +183,7 @@ import { CustomizeViewProps } from "../types/types";
               {embroideryColors.map((embroidery) => (
                 <div
                   key={embroidery.name}
+                  style={{ backgroundColor: material.embroideryColor === embroidery.color ? embroidery.bgClr : '' }}
                   className={`flex items-center font-inter  gap-1 px-2 py-1  ${embroidery.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : embroidery.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
                   onClick={() => materialChange('embroideryColor', embroidery.color)}
                 >

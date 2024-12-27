@@ -21,19 +21,19 @@ const PillowNodes = {
   right: {
     first: {
       id: 'right_pillow_1',
-      nodes: [93, 94],
+      nodes: [10,11,12,13 ,14,15],
       customization: {
-        color: '',
-        roughness: 1,
+        color: '#022c22',
+        roughness: 10,
         metalness: 0.2
       }
     },
     second: {
       id: 'right_pillow_2',
-      nodes: [106, 108, 109, 110],
+      nodes: [],
       customization: {
         color: '',
-        roughness: 0.7,
+        roughness: 10,
         metalness: 0.1
       }
     }
@@ -41,7 +41,7 @@ const PillowNodes = {
   left: {
     first: {
       id: 'left_pillow_1',
-      nodes: [104, 107],
+      nodes: [],
       customization: {
         color: '#0c0a09',
         roughness: 9,
@@ -50,9 +50,9 @@ const PillowNodes = {
     },
     second: {
       id: 'left_pillow_2',
-      nodes: [95, 96, 97, 98, 99, 100, 101, 102],
+      nodes: [],
       customization: {
-        color: '#022c22',
+        color: '#0c0a09',
         roughness: 10,
         metalness: 0.01
       }
@@ -63,13 +63,13 @@ type ModelProps = {
     modelPath: string;
   }
   
+  
 export default function Model({ modelPath } : ModelProps) {
   const { nodes, scene } = useGLTF(modelPath)
   const modelRef = useRef<THREE.Group>(null)
+  
   const [showHelpers, setShowHelpers] = useState(true)
 
-  console.log(Object.values(PillowNodes))
-  
 
   useEffect(() => {
     if (scene) {
