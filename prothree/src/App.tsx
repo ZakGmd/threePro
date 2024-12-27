@@ -32,7 +32,7 @@ const sofaNodeMappings: SofaNodeMappings = {
   0: { 
     pillows: {
       right: {
-        first: [3],
+        first: [2],
         second: [46] 
       },
       left: {
@@ -40,9 +40,9 @@ const sofaNodeMappings: SofaNodeMappings = {
         second: [41] 
       }
     },
-    frame: [], 
-    seat: [4,5],
-    embroidery: []
+    frame: [10,3,6,12,15,16,17,18,19,20,21,23,24,25,33,35,36,37,38,39,40,42,43,44,45], 
+    seat: [4,5,7,27,28,31],
+    embroidery: [11,13,29,34]
   },
   1: { 
     pillows: {
@@ -55,8 +55,8 @@ const sofaNodeMappings: SofaNodeMappings = {
         second: [95, 96, 97, 98, 99, 100, 101, 102] 
       }
     },
-    frame: [3,2,5],
-    seat: [],
+    frame: [],
+    seat: [3,2,5],
     embroidery: [96,97,98,99,102,109,110]
   },
   2: { 
@@ -76,7 +76,7 @@ const sofaNodeMappings: SofaNodeMappings = {
   }
 };
 function App() {
-  const [selectedSofa, setSelectedSofa] = useState<number>(1) ;
+  const [selectedSofa, setSelectedSofa] = useState<number>(0) ;
   const [currentStep, setCurrentStep] = useState<'select' | 'customize'>('select');
   const [materiales, setMaterial] = useState<SofaNode>({
     id: selectedSofa, 
@@ -146,7 +146,7 @@ function App() {
         {renderStepContent()}
       </div>
       <div className='w-full h-full'>
-        <Scene selectedModel={sofas[selectedSofa].modelPath} />
+        <Scene selectedModel={sofas[selectedSofa].modelPath} materials={materiales} />
       </div>
 
      </div>

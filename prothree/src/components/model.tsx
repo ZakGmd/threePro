@@ -3,93 +3,87 @@ import { useGLTF, useTexture, } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 
 import { useControls, folder } from 'leva'
+import { SofaNode } from '../types/types';
 
-interface PillowCustomization {
-  texture?: string;
-  color?: string;
-  material?: string;
-  roughness?: number;
-  metalness?: number;
-}
 
-interface PillowNode {
-  id: string;
-  nodes: number[];
-  customization: PillowCustomization;
-}
-const PillowNodes = {
-  right: {
-    first: {
-      id: 'right_pillow_1',
-      nodes: [10,11,12,13 ,14,15],
-      customization: {
-        color: '#022c22',
-        roughness: 10,
-        metalness: 0.2
-      }
-    },
-    second: {
-      id: 'right_pillow_2',
-      nodes: [],
-      customization: {
-        color: '',
-        roughness: 10,
-        metalness: 0.1
-      }
-    }
-  },
-  left: {
-    first: {
-      id: 'left_pillow_1',
-      nodes: [],
-      customization: {
-        color: '#0c0a09',
-        roughness: 9,
-        metalness: 0.1
-      }
-    },
-    second: {
-      id: 'left_pillow_2',
-      nodes: [],
-      customization: {
-        color: '#0c0a09',
-        roughness: 10,
-        metalness: 0.01
-      }
-    }
-  }
-};
 type ModelProps = {
     modelPath: string;
+    materials: SofaNode;
   }
   
   
-export default function Model({ modelPath } : ModelProps) {
+export default function Model({ modelPath , materials  } : ModelProps) {
   const { nodes, scene } = useGLTF(modelPath)
   const modelRef = useRef<THREE.Group>(null)
   
   const [showHelpers, setShowHelpers] = useState(true)
-
-
   useEffect(() => {
-    if (scene) {
-      Object.values(PillowNodes).forEach(side => {
-        Object.values(side).forEach(pillow => {
-          pillow.nodes.forEach(nodeId => {
-            const node = nodes[`Object_${nodeId}`];
-            if (node) {
-              const { color, roughness, metalness } = pillow.customization;
-              if (node instanceof THREE.Mesh) {
-                node.material.color.set(color);
-                node.material.roughness = roughness;
-                node.material.metalness = metalness;
-              }
+    if (!scene || !materials || !nodes ) return;
+
+    materials.nodes?.frame?.forEach(nodeId => {
+      const node = nodes[`Object_${nodeId}`];
+      if (node && node instanceof THREE.Mesh && materials.customization.frame) {
+        if (!node.material.userData.original) {
+          node.material.userData.original = node.material.clone();
+        }
+        const material = new THREE.MeshStandardMaterial({
+          color: new THREE.Color(materials.customization.frame),
+          metalness: 0.5,
+          roughness: 0.2
+        });
+        node.material = material;
+      }
+    });
+
+    materials.nodes?.seat?.forEach(nodeId => {
+      const node = nodes[`Object_${nodeId}`];
+      if (node && node instanceof THREE.Mesh && materials.customization.seatColor) {
+        if (!node.material.userData.original) {
+          node.material.userData.original = node.material.clone();
+        }
+        const material = new THREE.MeshStandardMaterial({
+          color: new THREE.Color(materials.customization.seatColor),
+          metalness: materials.customization.material === 'Leather' ? 0.3 : 0.1,
+          roughness: materials.customization.material === 'Velvet' ? 0.9 : 0.5
+        });
+        node.material = material;
+      }
+    });
+
+    materials.nodes?.pillows && Object.values(materials.nodes.pillows).forEach(side => {
+      Object.values(side).forEach(pillowGroup => {
+        pillowGroup.forEach(nodeId => {
+          const node = nodes[`Object_${nodeId}`];
+          if (node && node instanceof THREE.Mesh && materials.customization.pillowColor) {
+            if (!node.material.userData.original) {
+              node.material.userData.original = node.material.clone();
             }
-          });
+            const material = new THREE.MeshStandardMaterial({
+              color: new THREE.Color(materials.customization.pillowColor),
+              metalness: materials.customization.material === 'Leather' ? 0.3 : 0.1,
+              roughness: materials.customization.material === 'Velvet' ? 0.9 : 0.5
+            });
+            node.material = material;
+          }
         });
       });
-    }
-  }, [scene]);
+    });
+
+    materials.nodes?.embroidery?.forEach(nodeId => {
+      const node = nodes[`Object_${nodeId}`];
+      if (node && node instanceof THREE.Mesh && materials.customization.embroideryColor) {
+        if (!node.material.userData.original) {
+          node.material.userData.original = node.material.clone();
+        }
+        const material = new THREE.MeshStandardMaterial({
+          color: new THREE.Color(materials.customization.embroideryColor),
+          metalness: 0.7,
+          roughness: 0.3
+        });
+        node.material = material;
+      }
+    });
+  }, [scene, materials, nodes]);
 
   const {
     showGrid,

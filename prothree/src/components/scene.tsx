@@ -2,12 +2,14 @@ import { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import Model from './model'
+import { SofaNode } from '../types/types'
 type SceneProps = {
     selectedModel: string;
+    materials: SofaNode;
   }
 
 
-export default function Scene({ selectedModel } : SceneProps) {
+export default function Scene({ selectedModel , materials }: SceneProps) {
   return (
       <Canvas
         shadows
@@ -29,7 +31,7 @@ export default function Scene({ selectedModel } : SceneProps) {
           </directionalLight>
          
 
-          <Model modelPath={selectedModel}/>
+          <Model modelPath={selectedModel} materials={materials}/>
 
           <OrbitControls
 
