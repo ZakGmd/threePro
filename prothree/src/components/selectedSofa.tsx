@@ -38,8 +38,7 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext }: c
          </div>
          <div className='mt-10 flex w-full justify-end'>
            <div onClick={onNext} className=' py-3 px-4 bg-black text-white cursor-pointer rounded-[48px]'  >
-             <div>Next</div>
-             <div></div>
+             Next
            </div>
          </div>
 

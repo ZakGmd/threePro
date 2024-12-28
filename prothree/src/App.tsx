@@ -4,6 +4,7 @@ import Scene from './components/scene'
 import { Sofa, SofaNode, SofaNodeMappings } from './types/types';
 import SelectSofa from './components/selectedSofa';
 import CustomizeMaterial from './components/customizeMaterial';
+import Landing from './components/landing';
 const sofas: Sofa[] = [
   {
     id: 1,
@@ -81,7 +82,7 @@ const sofaNodeMappings: SofaNodeMappings = {
 };
 function App() {
   const [selectedSofa, setSelectedSofa] = useState<number>(1) ;
-  const [currentStep, setCurrentStep] = useState<'select' | 'customize'>('select');
+  const [currentStep, setCurrentStep] = useState< 'landing' | 'select' | 'customize'>('landing');
   const [materiales, setMaterial] = useState<SofaNode>({
     id: selectedSofa, 
     nodes: {
@@ -122,6 +123,12 @@ function App() {
 
   const renderStepContent = () => {
     switch(currentStep){
+      case 'landing': 
+        return(
+          <Landing 
+           onNext={() => setCurrentStep('select')} 
+          />
+        )
       case 'select' :
         return(
           <SelectSofa 
@@ -146,11 +153,17 @@ function App() {
 
   return (
     <>
-     <div className='flex items-start gap-[10] h-[100vh] w-full overflow-hidden '>
-      <div className='container h-full w-[700px] ml-[148px] pl-[32px] pr-[28px] border-r border-l border-gray-300 overflow-y-scroll  '>
+     <div className='flex items-start  h-[100vh] w-full overflow-hidden '>
+      <div
+          style={{border: currentStep === 'landing' ? 'none' : '' , 
+                  marginLeft: currentStep === 'landing' ? '0px' : '' ,
+                  width: currentStep === 'landing' ? '100%' : '' ,
+                   paddingTop: currentStep === 'landing' ? '320px' : ''
+                }}
+          className='container  h-full w-[700px]  ml-[148px] pl-[32px] pr-[28px] border-r border-l border-gray-300 overflow-y-scroll  '>
         {renderStepContent()}
       </div>
-      <div className='w-full h-full'>
+      <div className='w-full h-full flex '>
         <Scene selectedModel={sofas[selectedSofa].modelPath} materials={materiales} />
       </div>
 
