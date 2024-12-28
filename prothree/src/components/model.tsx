@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { useGLTF, useTexture, } from '@react-three/drei'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { useControls, folder } from 'leva'
 import { SofaNode } from '../types/types';
@@ -15,22 +15,30 @@ type ModelProps = {
 export default function Model({ modelPath , materials  } : ModelProps) {
   const { nodes, scene } = useGLTF(modelPath)
   const modelRef = useRef<THREE.Group>(null)
-  
   const [showHelpers, setShowHelpers] = useState(true)
+
+
+  const frameTexture = useTexture(
+    materials.customization?.texture || '/wood.jpg',
+  );
+
+
   useEffect(() => {
     if (!scene || !materials || !nodes ) return;
 
+    
     materials.nodes?.frame?.forEach(nodeId => {
       const node = nodes[`Object_${nodeId}`];
-      if (node && node instanceof THREE.Mesh && materials.customization.frame) {
-        if (!node.material.userData.original) {
-          node.material.userData.original = node.material.clone();
-        }
+      if (node && node instanceof THREE.Mesh) {
         const material = new THREE.MeshStandardMaterial({
-          color: new THREE.Color(materials.customization.frame),
-          metalness: 0.5,
-          roughness: 0.2
+          map: frameTexture,
+          metalness: 1.2,
+          roughness: 0.7
         });
+        if (materials.customization.frame) {
+          material.color = new THREE.Color(materials.customization.frame);
+        }
+
         node.material = material;
       }
     });
@@ -60,8 +68,7 @@ export default function Model({ modelPath , materials  } : ModelProps) {
             }
             const material = new THREE.MeshStandardMaterial({
               color: new THREE.Color(materials.customization.pillowColor),
-              metalness: materials.customization.material === 'Leather' ? 0.3 : 0.1,
-              roughness: materials.customization.material === 'Velvet' ? 0.9 : 0.5
+             
             });
             node.material = material;
           }
@@ -77,13 +84,13 @@ export default function Model({ modelPath , materials  } : ModelProps) {
         }
         const material = new THREE.MeshStandardMaterial({
           color: new THREE.Color(materials.customization.embroideryColor),
-          metalness: 0.7,
-          roughness: 0.3
+         
         });
         node.material = material;
       }
     });
-  }, [scene, materials, nodes]);
+  }, [scene, materials, nodes,frameTexture]);
+
 
   const {
     showGrid,

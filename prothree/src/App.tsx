@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react'
 import './App.css'
 import Scene from './components/scene'
@@ -40,9 +38,9 @@ const sofaNodeMappings: SofaNodeMappings = {
         second: [41] 
       }
     },
-    frame: [10,3,6,12,15,16,17,18,19,20,21,23,24,25,33,35,36,37,38,39,40,42,43,44,45], 
-    seat: [4,5,7,27,28,31],
-    embroidery: [11,13,29,34]
+    frame: [10,3,14,21,22,6,8,12,15,16,17,18,19,20,21,23,24,25,32,33,35,36,37,38,39,40,42,43,44,45,47], 
+    seat: [4,5,7,27,28,31,9],
+    embroidery: [11,13,29,34,30]
   },
   1: { 
     pillows: {
@@ -55,9 +53,12 @@ const sofaNodeMappings: SofaNodeMappings = {
         second: [95, 96, 97, 98, 99, 100, 101, 102] 
       }
     },
-    frame: [],
-    seat: [3,2,5],
-    embroidery: [96,97,98,99,102,109,110]
+    frame: [4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,
+            30,31,32,35,37,40,42,45,46,48,49,50,54,51,52,53,54,55,57,58,59,60,61,63,
+            64,65,66,67,69,70,71,72,73,74,75,76,78,79,80,81,82,83,84,86,87,88,89,90,
+            91,92,103,32,33,34,36,41,43,44,47,56,68,77,85],
+    seat: [3,2,5,62],
+    embroidery: [96,97,98,99,102,109,110,38,39]
   },
   2: { 
     pillows: {
@@ -70,13 +71,16 @@ const sofaNodeMappings: SofaNodeMappings = {
         second: [] 
       }
     },
-    frame: [],
-    seat: [2,3,4],
-    embroidery: [61,63,64]
+    frame: [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,
+            27,28,29,32,33,34,37,40,42,43,44,45,46,47,48,49,50,51,52,53,54,
+            55,56,57,58,59,35 ,36 ,42 ,30,
+    ],
+    seat: [2,3,4,39],
+    embroidery: [61,63,64,31,41,46]
   }
 };
 function App() {
-  const [selectedSofa, setSelectedSofa] = useState<number>(0) ;
+  const [selectedSofa, setSelectedSofa] = useState<number>(1) ;
   const [currentStep, setCurrentStep] = useState<'select' | 'customize'>('select');
   const [materiales, setMaterial] = useState<SofaNode>({
     id: selectedSofa, 
@@ -91,7 +95,8 @@ function App() {
       seatColor: '' ,
       pillowColor: '' ,
       embroideryColor: '' ,
-      material: ''
+      material: '' ,
+      texture: ''
     }
     });
 

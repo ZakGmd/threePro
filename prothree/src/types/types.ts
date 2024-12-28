@@ -9,6 +9,7 @@ export interface MaterialCustomization {
   pillowColor?: string;
   embroideryColor?: string;
   material?: string;
+  texture?: string;
 }
 
 export interface NodeStructure {

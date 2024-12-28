@@ -6,17 +6,20 @@ import { CustomizeViewProps } from "../types/types";
       {
         id:1 ,
         name:'Wood', 
-        color: '#a1662f5e'
+        color: '#a1662f5e',
+        texture: '/woood.png'
       }, 
       {
         id: 2 ,
         name:'Marble', 
-        color:'#e1e4e2'
+        color:'#e1e4e2',
+        texture: '/marble.jpg'
       }, 
       {
         id: 3 ,
         name:'Gold', 
-        color:'#d4af376e'
+        color:'#d4af376e',
+        texture: '/gold.jpeg'
       }
     ];
     const seatColors = [
@@ -95,8 +98,6 @@ import { CustomizeViewProps } from "../types/types";
         imgPath:'./linen.jpeg'
       }
     ]
-    console.log('sofa',{selectedSofa})
-
    
     return (
       <div className='flex flex-col items-baseline pt-[160px] gap-[120px] '>
@@ -121,7 +122,10 @@ import { CustomizeViewProps } from "../types/types";
                      ${frame.name === 'Gold' ? 'px-[11px] hover:bg-[#d4af376e]  ' : frame.name === 'Marble' ? 'hover:bg-[#e1e4e2]': 'hover:bg-[#a1662f5e]'}
                      ${material.frame === frame.color ? `bg-[${frame.color}] shadow-md` : 'bg-trasparent'}
                      hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
-                  onClick={() => materialChange('frame', frame.color)}
+                  onClick={() => {
+                    materialChange('frame', frame.color)
+                    materialChange('texture', frame.texture)
+                  }}
                   style={{ backgroundColor: material.frame === frame.color ? frame.color : '' }}
                 >{frame.name} </div> 
               ))}
