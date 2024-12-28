@@ -58,6 +58,7 @@ export interface custumizeSelectProps {
     sofas: Sofa[];
     selectedSofa: number;
     onNext: () => void;
+    onBack: () => void;
 } 
 
     

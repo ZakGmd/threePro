@@ -1,7 +1,7 @@
 import { custumizeSelectProps } from "../types/types";
 
 
-export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext }: custumizeSelectProps){
+export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onBack }: custumizeSelectProps){
 
     return(
         <div className='flex flex-col items-baseline pt-[160px] gap-[180px]'>
@@ -36,10 +36,16 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext }: c
              </div>
            ))}
          </div>
-         <div className='mt-10 flex w-full justify-end'>
-           <div onClick={onNext} className=' py-3 px-4 bg-black text-white cursor-pointer rounded-[48px]'  >
-             Next
-           </div>
+         <div className='mt-10 flex w-full justify-between '>
+          <div className="flex items-center w-full justify-between">
+              <div onClick={onBack} className=' py-3 px-4  text-black border-black border cursor-pointer rounded-[48px] hover:bg-black/5 transition-colors '  >
+               Back
+              </div>
+              <div onClick={onNext} className=' py-3 px-4 bg-black text-white cursor-pointer rounded-[48px]'  >
+               Next
+              </div>
+          </div>
+           
          </div>
 
         </div>

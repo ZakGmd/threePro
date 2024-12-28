@@ -133,7 +133,7 @@ export default function Model({ modelPath , materials  } : ModelProps) {
     
   }, [])
 
-console.log({nodes})
+
 
   return (
     <>
@@ -145,9 +145,7 @@ console.log({nodes})
         position={[modelPosition.x, modelPosition.y, modelPosition.z]}
         scale={modelScale}
       >
-        {showBoundingBox && (
-          <primitive object={new THREE.BoxHelper(scene, 0xff0000)} />
-        )}
+       
         
         <primitive 
           object={scene} 

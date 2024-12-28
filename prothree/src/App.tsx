@@ -81,7 +81,7 @@ const sofaNodeMappings: SofaNodeMappings = {
   }
 };
 function App() {
-  const [selectedSofa, setSelectedSofa] = useState<number>(1) ;
+  const [selectedSofa, setSelectedSofa] = useState<number>(0) ;
   const [currentStep, setCurrentStep] = useState< 'landing' | 'select' | 'customize'>('landing');
   const [materiales, setMaterial] = useState<SofaNode>({
     id: selectedSofa, 
@@ -134,6 +134,7 @@ function App() {
           <SelectSofa 
             setSofa={handleSofaChange} 
             onNext={() => setCurrentStep('customize')} 
+            onBack={() => setCurrentStep('landing')}
             sofas={sofas}
             selectedSofa={selectedSofa}
           />
@@ -157,10 +158,9 @@ function App() {
       <div
           style={{border: currentStep === 'landing' ? 'none' : '' , 
                   marginLeft: currentStep === 'landing' ? '0px' : '' ,
-                  width: currentStep === 'landing' ? '100%' : '' ,
-                   paddingTop: currentStep === 'landing' ? '320px' : ''
+                   paddingTop: currentStep === 'landing' ? '360px' : ''
                 }}
-          className='container  h-full w-[700px]  ml-[148px] pl-[32px] pr-[28px] border-r border-l border-gray-300 overflow-y-scroll  '>
+          className='container h-full ml-[148px] max-w-[720px] pl-[32px] pr-[28px] border-r border-l border-gray-300 overflow-y-scroll  '>
         {renderStepContent()}
       </div>
       <div className='w-full h-full flex '>
