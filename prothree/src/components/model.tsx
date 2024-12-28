@@ -21,7 +21,12 @@ export default function Model({ modelPath , materials  } : ModelProps) {
   const frameTexture = useTexture(
     materials.customization?.texture || '/wood.jpg',
   );
-
+ if(frameTexture){
+  frameTexture.flipY = true ;
+  frameTexture.wrapS = frameTexture.wrapT = THREE.RepeatWrapping ;
+  frameTexture.anisotropy = 1 ;
+  frameTexture.repeat.set(1,5);
+ }
 
   useEffect(() => {
     if (!scene || !materials || !nodes ) return;
@@ -33,7 +38,7 @@ export default function Model({ modelPath , materials  } : ModelProps) {
         const material = new THREE.MeshStandardMaterial({
           map: frameTexture,
           metalness: 1.2,
-          roughness: 0.7
+          roughness: 0.8
         });
         if (materials.customization.frame) {
           material.color = new THREE.Color(materials.customization.frame);
