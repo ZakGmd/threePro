@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { useGLTF, useTexture, } from '@react-three/drei'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useControls, folder } from 'leva'
 import { SofaNode } from '../types/types';
@@ -119,7 +119,7 @@ export default function Model({ modelPath , materials  } : ModelProps) {
         step: 0.001,
       },
       modelPosition: {
-        value: { x: 0, y: -0.3, z: 0 },
+        value: { x: 0, y: -0.50, z: 0 },
         step: 0.1,
       }
     })
@@ -133,6 +133,18 @@ export default function Model({ modelPath , materials  } : ModelProps) {
     
   }, [])
 
+  useEffect(() => {
+    if (scene) {
+      scene.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+          
+        }
+      });
+    }
+  }, [scene]);
+
 
 
   return (
@@ -144,13 +156,15 @@ export default function Model({ modelPath , materials  } : ModelProps) {
         ref={modelRef}
         position={[modelPosition.x, modelPosition.y, modelPosition.z]}
         scale={modelScale}
+     
+        
       >
        
-        
+      
         <primitive 
           object={scene} 
-          castShadow
-          receiveShadow
+          
+        
         />
 
       </group>

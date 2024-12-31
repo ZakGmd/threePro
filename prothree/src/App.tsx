@@ -154,13 +154,13 @@ function App() {
 
   return (
     <>
-     <div className='flex items-start  h-[100vh] w-full overflow-hidden '>
+     <div className='flex items-start   h-[100vh] w-full overflow-hidden '>
       <div
           style={{border: currentStep === 'landing' ? 'none' : '' , 
                   marginLeft: currentStep === 'landing' ? '0px' : '' ,
                    paddingTop: currentStep === 'landing' ? '360px' : ''
                 }}
-          className='container h-full ml-[148px] max-w-[720px] pl-[32px] pr-[28px] border-r border-l border-gray-300 overflow-y-scroll  '>
+          className='container h-full ml-[148px] w-full max-w-[720px] pl-[32px] pr-[28px] border-r border-l border-gray-300 overflow-y-scroll  '>
         {renderStepContent()}
       </div>
       <div className='w-full h-full flex '>
