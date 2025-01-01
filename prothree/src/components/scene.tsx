@@ -9,6 +9,7 @@ import FirstVase from './firtVase'
 import FirstCadre from './firstCadre'
 import SecondCadre from './secondCadre'
 import SecondVase from './secondVase'
+
 type SceneProps = {
     selectedModel: string;
     materials: SofaNode;
@@ -33,10 +34,11 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
        
         <directionalLight
           castShadow
+          
           position={[10, 18, 11 ]}
-          intensity={5}
+          intensity={3}
           shadow-mapSize={[2048, 2048]}
-          shadow-camera-far={1000}
+          shadow-camera-far={800}
           shadow-camera-near={1}
           shadow-camera-left={-1}
           shadow-camera-right={10}
@@ -46,8 +48,9 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
         >
           
         </directionalLight>
+    
         <ambientLight intensity={1} castShadow />
-        
+          <Environment preset="night" files={'/4kZ`'} />
           <Container />
           <FirstCadre />
           <SecondCadre />
