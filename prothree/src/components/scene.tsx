@@ -1,10 +1,14 @@
 import { Suspense } from 'react'
 import { Canvas} from '@react-three/fiber'
-import {OrbitControls} from '@react-three/drei'
+import {Backdrop, Environment, OrbitControls, ShadowAlpha, SoftShadows} from '@react-three/drei'
 import Model from './model'
 import { SofaNode } from '../types/types'
 import Container from './container'
 import Loader from './loader'
+import FirstVase from './firtVase'
+import FirstCadre from './firstCadre'
+import SecondCadre from './secondCadre'
+import SecondVase from './secondVase'
 type SceneProps = {
     selectedModel: string;
     materials: SofaNode;
@@ -30,34 +34,40 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
         <directionalLight
           castShadow
           position={[10, 18, 11 ]}
-          intensity={8}
+          intensity={5}
           shadow-mapSize={[2048, 2048]}
           shadow-camera-far={1000}
           shadow-camera-near={1}
-          shadow-camera-left={-12}
+          shadow-camera-left={-1}
           shadow-camera-right={10}
           shadow-camera-top={8}
           shadow-camera-bottom={-12}
-          shadow-bias={-0.000000000001}
-        />
-        <ambientLight intensity={0.3} castShadow />
+          shadow-bias={-0.00001}
+        >
           
+        </directionalLight>
+        <ambientLight intensity={1} castShadow />
+        
           <Container />
-          
-          
+          <FirstCadre />
+          <SecondCadre />
+          <FirstVase />
+          <SecondVase />
           <Model modelPath={selectedModel} materials={materials} />
       
-
+    
           <OrbitControls
-            maxPolarAngle={Math.PI /1.76}
+            maxPolarAngle={Math.PI /2}
             minPolarAngle={Math.PI / 2 - 2}
             maxAzimuthAngle={Math.PI / 3.5}
             minAzimuthAngle={-Math.PI / 3.5}
-            enableZoom={true}
+           enableZoom={true}
+           // minDistance={1} 
+            // maxDistance={3}
            
           />
           
-        
+          <ShadowAlpha opacity={0.2} /> 
         </Suspense>
       </Canvas>
    

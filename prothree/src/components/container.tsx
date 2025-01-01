@@ -9,14 +9,14 @@ export default  function Container() {
           position={[0, -0.5, 0]}
           receiveShadow
         >
-          <planeGeometry args={[500, 500]} />
+          <planeGeometry args={[200, 200]} />
           <meshStandardMaterial color="#ffffff11" />
         </mesh>
         <mesh 
-          position={[0, 24.5, -15]}
+          position={[0, 2.2, -2]}
           receiveShadow
         >
-          <planeGeometry args={[500, 500]} />
+          <planeGeometry args={[200, 200]} />
           <meshStandardMaterial color="#ffffff11" />
         </mesh>
       </group>

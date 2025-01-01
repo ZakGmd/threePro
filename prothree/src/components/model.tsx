@@ -136,7 +136,7 @@ export default function Model({ modelPath , materials  } : ModelProps) {
   useEffect(() => {
     if (scene) {
       scene.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
+        if (child instanceof THREE.Mesh ) {
           child.castShadow = true;
           child.receiveShadow = true;
           

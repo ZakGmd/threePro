@@ -208,8 +208,9 @@ import { CustomizeViewProps } from "../types/types";
               {materiales.map((material,index) => (
                <div 
                  key={material.id}
-                 className="flex items-center gap-1 font-inter hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all px-2 py-1"
+                 className="flex items-center gap-1 font-inter hover:shadow-md font-normal  rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all px-2 py-1"
                  onClick={() => materialChange('material', material.name)}
+                 
 
                 >
                  <img src={material.imgPath} className="h-3 w-3 rounded-full " />
