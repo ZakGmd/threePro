@@ -36,7 +36,7 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
           castShadow
           
           position={[10, 18, 11 ]}
-          intensity={3}
+          intensity={4}
           shadow-mapSize={[2048, 2048]}
           shadow-camera-far={800}
           shadow-camera-near={1}
@@ -48,9 +48,9 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
         >
           
         </directionalLight>
-    
-        <ambientLight intensity={1} castShadow />
-          <Environment preset="night" files={'/4kZ`'} />
+        <Environment preset="night" />
+        <ambientLight intensity={1.3} castShadow />
+        
           <Container />
           <FirstCadre />
           <SecondCadre />
