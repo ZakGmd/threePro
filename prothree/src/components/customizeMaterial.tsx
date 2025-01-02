@@ -112,7 +112,7 @@ import { CustomizeViewProps } from "../types/types";
         <div className='flex flex-col gap-7 w-full'>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Chose frame material 
+               frame  
             </div>
             <div className='flex gap-3'>
               {frames.map((frame) => (
@@ -133,7 +133,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Chose seat color 
+               seat  
             </div>
             <div className='flex items-center gap-3'>
               {seatColors.map((seat) => (
@@ -160,7 +160,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Chose pillow color 
+               pillow  
             </div>
             <div className='flex items-center gap-3'>
               {pillowColors.map((pillow) => (
@@ -181,7 +181,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Chose embroidery color 
+               embroidery  
             </div>
             <div className='flex items-center gap-3'>
               {embroideryColors.map((embroidery) => (
@@ -202,7 +202,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Choose Material
+               Material
             </div>
             <div className='flex items-center gap-3'>
               {materiales.map((material,index) => (

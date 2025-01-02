@@ -160,7 +160,7 @@ function App() {
                   marginLeft: currentStep === 'landing' ? '0px' : '' ,
                    paddingTop: currentStep === 'landing' ? '360px' : ''
                 }}
-          className='container h-full ml-[148px] w-full max-w-[720px] pl-[32px] pr-[28px] border-r border-l border-gray-300 overflow-y-scroll  '>
+          className='container h-full ml-[148px] w-full max-w-[720px] px-[32px]  border-r border-l border-gray-300 overflow-y-scroll  '>
         {renderStepContent()}
       </div>
       <div className='w-full h-full flex '>
