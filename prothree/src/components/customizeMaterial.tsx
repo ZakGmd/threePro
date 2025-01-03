@@ -36,7 +36,8 @@ import { CustomizeViewProps } from "../types/types";
         bgClr:'#022c2238'
       }, 
       {
-        id: 3 ,name:'Dark Charcoal', 
+        id: 3 ,
+        name:'Dark Charcoal', 
         color:'#0c0a09',
         bgClr:'#0c0a0938'
       }
@@ -194,7 +195,7 @@ import { CustomizeViewProps } from "../types/types";
                   key={embroidery.name}
                   style={{ backgroundColor: material.embroideryColor === embroidery.color ? embroidery.bgClr : '' }}
                   className={`flex items-center   font-inter  gap-1 px-2 py-1  
-                    ${embroidery.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : embroidery.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} 
+                    ${embroidery.name === 'Metallic Gold' ? ' hover:bg-[#d4af3762] ' : embroidery.name === 'Cool Silver' ? 'hover:bg-[#c0c0c063]': 'hover:bg-[#d6c9af67]'} 
                      ${material.embroideryColor === embroidery.color ? `  shadow-md` : ''}
                     hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
                   onClick={() => materialChange('embroideryColor', embroidery.color)}
