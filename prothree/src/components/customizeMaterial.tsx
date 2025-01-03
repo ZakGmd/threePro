@@ -66,7 +66,7 @@ import { CustomizeViewProps } from "../types/types";
         id:1 ,
         name:'Metallic Gold', 
         color:'#D4AF37' ,
-        bgClr:'#d4af376e'
+        bgClr:'#d4af3754'
       }, 
       {
         id: 2 ,
@@ -92,11 +92,7 @@ import { CustomizeViewProps } from "../types/types";
         name:'Velvet',
         imgPath:'./velvet.jpg'
       }, 
-      {
-        id:3 , 
-        name:'Linen',
-        imgPath:'./linen.jpeg'
-      }
+      
     ]
    
     return (
@@ -112,13 +108,13 @@ import { CustomizeViewProps } from "../types/types";
         <div className='flex flex-col gap-7 w-full'>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-               frame  
+              Chose frame material 
             </div>
             <div className='flex gap-3'>
               {frames.map((frame) => (
                 <div
                   key={frame.id}
-                  className={`px-2 py-1 text-[14px] font-inter 
+                  className={`px-2 py-1 text-[14px] font-inter
                      ${frame.name === 'Gold' ? 'px-[11px] hover:bg-[#d4af376e]  ' : frame.name === 'Marble' ? 'hover:bg-[#e1e4e2]': 'hover:bg-[#a1662f5e]'}
                      ${material.frame === frame.color ? `bg-[${frame.color}] shadow-md` : 'bg-trasparent'}
                      hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
@@ -133,7 +129,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-               seat  
+              Chose seat color 
             </div>
             <div className='flex items-center gap-3'>
               {seatColors.map((seat) => (
@@ -150,59 +146,76 @@ import { CustomizeViewProps } from "../types/types";
                   onClick={() => materialChange('seatColor', seat.color)}
                 >
                  <div
-                  className='w-3 h-3   rounded-full'
-                  style={{ backgroundColor: seat.color }}
+                  className={`w-4 h-4  ${seat.name === 'Light Khaki' ? '' : 'brightness-150' }   rounded-full`}
+                  style={{ backgroundColor: seat.color ,
+                    
+                  }}
                   />
-                  <div className="text-[14px]  leading-normal">{seat.name}</div>
+                  <div className="text-[14px] tracking-wide   leading-normal">{seat.name}</div>
                 </div> 
               ))}
             </div>
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-               pillow  
+              Chose pillow color 
             </div>
             <div className='flex items-center gap-3'>
               {pillowColors.map((pillow) => (
                 <div
                   key={pillow.name}
-                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${pillow.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : pillow.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
-                  style={{ backgroundColor: material.pillowColor === pillow.color ? pillow.bgClr : '' }}
+                  className={`flex items-center font-inter   gap-1 px-2 py-1  
+                    ${pillow.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : pillow.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} 
+                     ${material.pillowColor === pillow.color ? `  shadow-md` : ''}
+                    hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  style={{ backgroundColor: material.pillowColor === pillow.color ? pillow.bgClr : '' ,
+                  
+                  }}
                   onClick={() => materialChange('pillowColor', pillow.color)}
                 >
                  <div
-                  className='w-3 h-3   rounded-full'
-                  style={{ backgroundColor: pillow.color }}
+                  className={`w-4 h-4  ${pillow.name === 'Light Khaki' ? '' : 'brightness-150' }  rounded-full`} 
+                  style={{ backgroundColor: pillow.color ,
+                     
+                   }}
                   />
-                  <div className="text-[14px]  leading-normal">{pillow.name}</div>
+                  <div className="text-[14px] tracking-wide  leading-normal">{pillow.name}</div>
                 </div> 
               ))}
             </div>
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-               embroidery  
+              Chose embroidery color 
             </div>
             <div className='flex items-center gap-3'>
               {embroideryColors.map((embroidery) => (
                 <div
                   key={embroidery.name}
                   style={{ backgroundColor: material.embroideryColor === embroidery.color ? embroidery.bgClr : '' }}
-                  className={`flex items-center font-inter  gap-1 px-2 py-1  ${embroidery.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : embroidery.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                  className={`flex items-center   font-inter  gap-1 px-2 py-1  
+                    ${embroidery.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : embroidery.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} 
+                     ${material.embroideryColor === embroidery.color ? `  shadow-md` : ''}
+                    hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
                   onClick={() => materialChange('embroideryColor', embroidery.color)}
                 >
                  <div
-                  className='w-3 h-3   rounded-full'
-                  style={{ backgroundColor: embroidery.color }}
+                  className={`w-4 h-4 ${embroidery.name === 'Soft Cream' ? ' brightness-[0.97]  ' : ''}  rounded-full`}
+                  style={{ backgroundColor: embroidery.color ,
+                           filter: material.embroideryColor === '#F9F9E0' ? 'brightness(1.02)' : '' ,
+                           transition: 'all 0.25s ease'
+                 
+                    
+                  }}
                   />
-                  <div className="text-[14px]  leading-normal">{embroidery.name}</div>
+                  <div className="text-[14px] tracking-wide   leading-normal">{embroidery.name}</div>
                 </div> 
               ))}
             </div>
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-               Material
+              Choose Material
             </div>
             <div className='flex items-center gap-3'>
               {materiales.map((material,index) => (

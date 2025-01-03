@@ -158,7 +158,7 @@ function App() {
       <div
           style={{border: currentStep === 'landing' ? 'none' : '' , 
                   marginLeft: currentStep === 'landing' ? '0px' : '' ,
-                   paddingTop: currentStep === 'landing' ? '360px' : ''
+                   paddingTop: currentStep === 'landing' ? '420px' : ''
                 }}
           className='container h-full ml-[148px] w-full max-w-[720px] px-[32px]  border-r border-l border-gray-300 overflow-y-scroll  '>
         {renderStepContent()}
