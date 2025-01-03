@@ -22,7 +22,7 @@ export default function SecondCadre() {
         <>
              <primitive 
              object={scene} 
-             position={[1,1.34,-1.955]}
+             position={[1.3,1.34,-1.955]}
             scale={0.8}
              
                 receiveShadow={true}

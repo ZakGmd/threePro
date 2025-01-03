@@ -108,13 +108,13 @@ import { CustomizeViewProps } from "../types/types";
         <div className='flex flex-col gap-7 w-full'>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Chose frame material 
+               frame material 
             </div>
             <div className='flex gap-3'>
               {frames.map((frame) => (
                 <div
                   key={frame.id}
-                  className={`px-2 py-1 text-[14px] font-inter
+                  className={`px-2 py-1 text-[14px] font-inter tracking-wide 
                      ${frame.name === 'Gold' ? 'px-[11px] hover:bg-[#d4af376e]  ' : frame.name === 'Marble' ? 'hover:bg-[#e1e4e2]': 'hover:bg-[#a1662f5e]'}
                      ${material.frame === frame.color ? `bg-[${frame.color}] shadow-md` : 'bg-trasparent'}
                      hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
@@ -129,7 +129,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Chose seat color 
+               seat color 
             </div>
             <div className='flex items-center gap-3'>
               {seatColors.map((seat) => (
@@ -158,7 +158,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Chose pillow color 
+               pillow color 
             </div>
             <div className='flex items-center gap-3'>
               {pillowColors.map((pillow) => (
@@ -186,7 +186,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Chose embroidery color 
+               embroidery color 
             </div>
             <div className='flex items-center gap-3'>
               {embroideryColors.map((embroidery) => (
@@ -215,7 +215,7 @@ import { CustomizeViewProps } from "../types/types";
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
-              Choose Material
+              Sofa Material
             </div>
             <div className='flex items-center gap-3'>
               {materiales.map((material,index) => (
