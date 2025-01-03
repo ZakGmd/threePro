@@ -227,8 +227,8 @@ import { CustomizeViewProps } from "../types/types";
                  
 
                 >
-                 <img src={material.imgPath} className="h-3 w-3 rounded-full " />
-                 <div className="text-[14px]  leading-normal">{material.name}</div>
+                 <img src={material.imgPath} className="h-4 w-4 rounded-full " />
+                 <div className="text-[14px] tracking-wide leading-normal">{material.name}</div>
                </div>
               ))}
             </div>
@@ -240,6 +240,7 @@ import { CustomizeViewProps } from "../types/types";
             >
               Back
             </button>
+           
             <button
               className='py-3 px-4 bg-black text-white rounded-[48px] hover:bg-black/80 transition-colors'
             >

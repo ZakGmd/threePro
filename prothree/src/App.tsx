@@ -5,6 +5,7 @@ import { Sofa, SofaNode, SofaNodeMappings } from './types/types';
 import SelectSofa from './components/selectedSofa';
 import CustomizeMaterial from './components/customizeMaterial';
 import Landing from './components/landing';
+import CartIcon from './components/cartIcon';
 const sofas: Sofa[] = [
   {
     id: 1,
@@ -154,7 +155,8 @@ function App() {
 
   return (
     <>
-     <div className='flex items-start   h-[100vh] w-full overflow-hidden '>
+     <div className='relative flex items-start   h-[100vh] w-full overflow-hidden '>
+     
       <div
           style={{border: currentStep === 'landing' ? 'none' : '' , 
                   marginLeft: currentStep === 'landing' ? '0px' : '' ,
@@ -166,7 +168,7 @@ function App() {
       <div className='w-full h-full flex '>
         <Scene selectedModel={sofas[selectedSofa].modelPath} materials={materiales} />
       </div>
-
+     <CartIcon />
      </div>
      
     </>
