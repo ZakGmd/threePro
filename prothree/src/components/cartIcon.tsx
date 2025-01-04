@@ -3,7 +3,7 @@ import { useState } from 'react'
 import AddToCart from './addToCard'
 
 export default function CartIcon (){
-  const [isCartOpen, setIsCartOpen] = useState(true)
+  const [isCartOpen, setIsCartOpen] = useState(false)
 
  
 
@@ -19,7 +19,7 @@ export default function CartIcon (){
       </button>
       </div>
      
-      {isCartOpen && <AddToCart onClose={() => setIsCartOpen(false)} />}
+      {isCartOpen && <AddToCart onClose={() => setIsCartOpen(false)} state={isCartOpen} />}
     </div>
   )
 }

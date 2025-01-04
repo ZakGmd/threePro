@@ -147,7 +147,7 @@ import { CustomizeViewProps } from "../types/types";
                   onClick={() => materialChange('seatColor', seat.color)}
                 >
                  <div
-                  className={`w-4 h-4  ${seat.name === 'Light Khaki' ? '' : 'brightness-150' }   rounded-full`}
+                  className={`w-5 h-5 mb-[1px]  ${seat.name === 'Light Khaki' ? '' : 'brightness-150' }   rounded-full`}
                   style={{ backgroundColor: seat.color ,
                     
                   }}
@@ -175,7 +175,7 @@ import { CustomizeViewProps } from "../types/types";
                   onClick={() => materialChange('pillowColor', pillow.color)}
                 >
                  <div
-                  className={`w-4 h-4  ${pillow.name === 'Light Khaki' ? '' : 'brightness-150' }  rounded-full`} 
+                  className={`w-5 h-5 mb-[1px]  ${pillow.name === 'Light Khaki' ? '' : 'brightness-150' }  rounded-full`} 
                   style={{ backgroundColor: pillow.color ,
                      
                    }}
@@ -201,7 +201,7 @@ import { CustomizeViewProps } from "../types/types";
                   onClick={() => materialChange('embroideryColor', embroidery.color)}
                 >
                  <div
-                  className={`w-4 h-4 ${embroidery.name === 'Soft Cream' ? ' brightness-[0.97]  ' : ''}  rounded-full`}
+                  className={`w-5 h-5 mb-[1px] ${embroidery.name === 'Soft Cream' ? ' brightness-[0.97]  ' : ''}  rounded-full`}
                   style={{ backgroundColor: embroidery.color ,
                            filter: material.embroideryColor === '#F9F9E0' ? 'brightness(1.02)' : '' ,
                            transition: 'all 0.25s ease'
@@ -227,7 +227,7 @@ import { CustomizeViewProps } from "../types/types";
                  
 
                 >
-                 <img src={material.imgPath} className="h-4 w-4 rounded-full " />
+                 <img src={material.imgPath} className="h-5 w-5 mb-[1px] rounded-full " />
                  <div className="text-[14px] tracking-wide leading-normal">{material.name}</div>
                </div>
               ))}
