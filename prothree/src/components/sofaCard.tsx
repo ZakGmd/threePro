@@ -16,8 +16,14 @@ export default function SofaCard({ sofa, materials, onDelete }: SofaCardProps) {
             style={{ width: '100%', height: '100%' , background: ''  }}
 
           >
-         
-            <ambientLight intensity={2.8} castShadow />
+            <directionalLight
+            castShadow
+            position={[10, 18, 11 ]}
+          intensity={4}
+        
+        />
+
+            <ambientLight intensity={0.5} castShadow />
             <pointLight position={[10, 10, 10]} />
             <ModelCard modelPath={sofa.modelPath} materials={materials} />
             <OrbitControls 
