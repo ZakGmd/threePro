@@ -6,7 +6,9 @@ export default function  AddToCart ({onClose}: {onClose: () => void}) {
 
   return (
    <>
-      <div className="py-3 px-6 w-[640px] backdrop-blur-3xl flex flex-col  shadow-sm border-2 border-black/10 rounded-lg top-[80px] fixed right-[16px] h-[840px]">
+      <div className="py-3 px-6 w-[640px] backdrop-blur-3xl bg-white/40 backdrop-contrast-125  animate-fade flex flex-col  shadow-sm border-2 border-black/10 rounded-lg top-[80px] fixed right-[16px] h-[840px]"
+            
+      >
           <div className="flex flex-col items-start gap-5  w-full h-full ">
               <div className="text-center font-space-mono w-full tracking-[-0.12px] ">The Art of Selection</div>
               <SofaCard />
