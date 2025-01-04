@@ -52,6 +52,7 @@ export interface CustomizeViewProps {
   materialChange: (type: keyof MaterialCustomization, value: string) => void;
   material: SofaNode['customization'];
   onBack: () => void;
+  handleAddToCart: () => void;
 }
 export interface custumizeSelectProps {
     setSofa: (index: number) => void;
@@ -70,9 +71,25 @@ export interface SofaCardProps {
   onDelete?: () => void;
 }
 
-    
-
-
+export interface CardItem {
+  sofa: {
+    id: number;
+    name: string;
+    modelPath: string;
+    price: number;
+  };
+  materials: SofaNode;
+}
+export interface AddToCartProps {
+  onClose: () => void;
+  state: boolean;
+  cartItems: CardItem[];
+  onDeleteItem: (id: number) => void;
+}
+export interface CardIconProps {
+  cartItems: CardItem[];
+  onDeleteItem: (id: number) => void;
+}
 
 
  

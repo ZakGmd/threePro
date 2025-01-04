@@ -1,8 +1,9 @@
 import { ShoppingCart } from 'lucide-react';
 import { useState } from 'react'
 import AddToCart from './addToCard'
+import { CardIconProps } from '../types/types';
 
-export default function CartIcon (){
+export default function CartIcon ({ cartItems, onDeleteItem }: CardIconProps) {
   const [isCartOpen, setIsCartOpen] = useState(false)
 
  
@@ -12,14 +13,22 @@ export default function CartIcon (){
       <div className=' backdrop-blur-2xl bg-white/40 flex border backdrop-brightness-[0.80]  shadow-sm border-black/25 rounded-md hover:bg-white/30 transition-all duration-300 '>
         <button className='inline-flex items-center justify-center relative  pr-[14px] pl-3 py-2  '   onClick={() => setIsCartOpen(!isCartOpen)}>
         <ShoppingCart className="h-5 w-5 opacity-80 " color='black'/>
-        <span className="absolute -top-1 -right-2 bg-[#f15c22] text-white  border border-black/25 rounded-full pb-[1.5px] pl-[0.5px] w-5 h-5 flex items-center justify-center text-[12px] ">
-           3
-          </span>
+        {cartItems.length > 0 && (
+            <span className="absolute -top-1 -right-2 bg-[#f15c22] text-white border border-black/25 rounded-full pb-[1.5px] pl-[0.5px] w-5 h-5 flex items-center justify-center text-[12px]">
+              {cartItems.length}
+            </span>
+          )}
         
       </button>
       </div>
      
-      {isCartOpen && <AddToCart onClose={() => setIsCartOpen(false)} state={isCartOpen} />}
+      {isCartOpen && 
+                  <AddToCart 
+                    onClose={() => setIsCartOpen(false)} 
+                    state={isCartOpen} 
+                    cartItems={cartItems} 
+                    onDeleteItem={onDeleteItem}
+                  />}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Scene from './components/scene'
-import { Sofa, SofaNode, SofaNodeMappings } from './types/types';
+import { CardItem, Sofa, SofaNode, SofaNodeMappings } from './types/types';
 import SelectSofa from './components/selectedSofa';
 import CustomizeMaterial from './components/customizeMaterial';
 import Landing from './components/landing';
@@ -101,7 +101,19 @@ function App() {
       texture: ''
     }
     });
-
+    const [cartItems, setCartItems] = useState<CardItem[]>([]);
+  const handleAddToCart = () => {
+  const newItem = {
+    sofa: {
+      id: selectedSofa,
+      name: sofas[selectedSofa].name,
+      modelPath: sofas[selectedSofa].modelPath,
+      price: 35000 
+    },
+    materials: materiales
+  };
+  setCartItems(prev => [...prev, newItem]);
+};
   const handleSofaChange = (id: number) => {
     setSelectedSofa(id);
     setMaterial(prev =>({
@@ -146,11 +158,16 @@ function App() {
             selectedSofa={sofas[selectedSofa]}
             onBack={() => setCurrentStep('select')} 
             materialChange={handleMaterialChange}  
-            material={materiales.customization}        
+            material={materiales.customization}   
+            handleAddToCart={handleAddToCart}     
           />
         )
     }
     }
+    const handleDeleteFromCart = (id: number) => {
+      setCartItems(prev => prev.filter(item => item.sofa.id !== id));
+    };
+    
   
 
   return (
@@ -168,7 +185,7 @@ function App() {
       <div className='w-full h-full flex '>
         <Scene selectedModel={sofas[selectedSofa].modelPath} materials={materiales} />
       </div>
-     <CartIcon />
+     <CartIcon cartItems={cartItems} onDeleteItem={handleDeleteFromCart} />
      </div>
      
     </>

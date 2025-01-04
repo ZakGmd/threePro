@@ -1,18 +1,26 @@
+import { AddToCartProps } from "../types/types";
 import SofaCard from "./sofaCard";
 
 
-export default function  AddToCart ({onClose , state}: {onClose: () => void , state: boolean }) {
+export default function  AddToCart ({ onClose, state, cartItems, onDeleteItem }: AddToCartProps) {
+
+    
 
 
   return (
    <>
       <div className={`py-3 px-6 w-[640px] backdrop-blur-3xl bg-white/30 backdrop-contrast-100 backdrop-brightness-100 ${state === true ? 'animate-fadeIn' : state ===false ?'animate-fadeOut' :''}  flex flex-col  shadow-sm border-2 border-black/10 rounded-lg top-[80px] fixed right-[16px] h-[840px]`}>
       
-          <div className="flex flex-col items-start gap-5  w-full h-full ">
+          <div className="flex flex-col items-start gap-2  w-full h-full ">
               <div className="text-center font-space-mono w-full tracking-[-0.12px] ">The Art of Selection</div>
-              <SofaCard />
-              <SofaCard />
-              <SofaCard />
+              {cartItems.map((item) => (
+               <SofaCard
+                key={item.sofa.id}
+                sofa={item.sofa}
+                materials={item.materials}
+                onDelete={() => onDeleteItem(item.sofa.id)}
+               />
+        ))}
              
           </div>
           <div className="flex flex-col items-center justify-start border-t border-black/10 pt-4 gap-3 ">

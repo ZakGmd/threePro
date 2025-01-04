@@ -1,7 +1,7 @@
 import { CustomizeViewProps } from "../types/types";
 
 
-  export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material }: CustomizeViewProps) {
+  export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material , handleAddToCart }: CustomizeViewProps) {
     const frames = [
       {
         id:1 ,
@@ -242,6 +242,7 @@ import { CustomizeViewProps } from "../types/types";
             </button>
            
             <button
+            onClick={handleAddToCart}
               className='py-3 px-4 bg-black text-white rounded-[48px] hover:bg-black/80 transition-colors'
             >
               Add to Cart
