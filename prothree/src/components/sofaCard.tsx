@@ -3,8 +3,8 @@
 export default function SofaCard() {
 
     return(
-       <>
-          <div className="flex items-center gap-4 w-full border-b border-black/10 py-4">
+       <div className="flex flex-col items-start w-full">
+          <div className="flex items-center gap-4 w-full py-4">
             <div>
           <img src="/sofaa.png" alt="sofa img" width={180} height={180} />
             </div>
@@ -18,11 +18,13 @@ export default function SofaCard() {
                         <div className="text-[#0c0a09b2] text-[12px] " >Price:</div>
                         <div className=" font-medium ">$35000</div>
                     </div>
-                    <div className="py-1 px-3 rounded-md text-[#0c0a09b2] font font-medium bg-black/15 text-[12px] leading-normal tracking-wide text-center cursor-pointer hover:text-[#0c0a09d2] hover:bg-black/20 transition-all duration-200">Delete</div>
+                    <div className="py-1 px-3 rounded-md text-[#0c0a09fb] shadow-[0_1px_1.5px_rgba(0,0,0,0.1),inset_0px_1px_0px_rgba(0,0,0,0.1)] font-medium bg-black/15 hover:bg-black/20  text-[12px] leading-normal tracking-wide text-center cursor-pointer hover:text-[#0c0a09d2] transition-all  duration-200">Delete</div>
                 </div>
+                
             </div>
-           
+         
           </div>
-       </>
+          <div className="h-[0.5px] w-full bg-black/10 shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.2px_0.2px_rgba(0,0,0,0.1)] rounded-md"></div>
+       </div>
     )
 }

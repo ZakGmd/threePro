@@ -60,6 +60,15 @@ export interface custumizeSelectProps {
     onNext: () => void;
     onBack: () => void;
 } 
+export interface SofaCardProps {
+  sofa: {
+    name: string;
+    modelPath: string;
+    price: number;
+  };
+  materials: SofaNode;
+  onDelete?: () => void;
+}
 
     
 
