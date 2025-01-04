@@ -24,7 +24,7 @@ export default function SofaCard({ sofa, materials, onDelete }: SofaCardProps) {
         />
 
             <ambientLight intensity={0.5} castShadow />
-            <pointLight position={[10, 10, 10]} />
+            
             <ModelCard modelPath={sofa.modelPath} materials={materials} />
             <OrbitControls 
               enableZoom={true}

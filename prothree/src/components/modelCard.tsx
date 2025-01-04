@@ -86,7 +86,7 @@ export default function ModelCard({ modelPath, materials, scale = 0.004 }: Model
   return (
     <group 
       ref={modelRef}
-      position={[0, -1.5, 0]}
+      position={[0, -2, 0]}
       scale={scale}
       receiveShadow
      
