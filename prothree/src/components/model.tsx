@@ -97,33 +97,7 @@ export default function Model({ modelPath , materials  } : ModelProps) {
   }, [scene, materials, nodes,frameTexture]);
 
 
-  const {
-    showGrid,
-    showAxes,
-    showBoundingBox,
 
-    modelScale,
-    modelPosition,
-  } = useControls('Debug Controls', {
-    helpers: folder({
-      showGrid: true,
-      showAxes: true,
-      showBoundingBox: true,
-      
-    }),
-    model: folder({
-      modelScale: {
-        value: 0, 
-        min: 0.001,
-        max: 1,
-        step: 0.001,
-      },
-      modelPosition: {
-        value: { x: 0, y: -0.50, z: 0 },
-        step: 0.1,
-      }
-    })
-  })
   useEffect(() => {
     
     useGLTF.preload('/sofa.glb')
@@ -149,13 +123,12 @@ export default function Model({ modelPath , materials  } : ModelProps) {
 
   return (
     <>
-      {showGrid && <gridHelper args={[30, 20]} />}
-      {showAxes && <axesHelper args={[5]} />}
+   
       
       <group 
         ref={modelRef}
-        position={[modelPosition.x, modelPosition.y, modelPosition.z]}
-        scale={modelScale}
+        position={[0, -0.50, 0]}
+        scale={0.001}
      
         
       >
