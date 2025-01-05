@@ -1,7 +1,13 @@
 import { CustomizeViewProps } from "../types/types";
+import { sofas } from "../utils/utilities";
 
 
-  export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material , handleAddToCart }: CustomizeViewProps) {
+
+
+  export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material , handleAddToCart ,PriceComponent}: CustomizeViewProps) {
+    
+    
+
     const frames = [
       {
         id:1 ,
@@ -233,6 +239,7 @@ import { CustomizeViewProps } from "../types/types";
               ))}
             </div>
           </div>
+          <PriceComponent material={material} basePrice={sofas[selectedSofa.id - 1].basePrice} />
           <div className='my-8 flex justify-between items-center w-full'>
             <button
               onClick={onBack}

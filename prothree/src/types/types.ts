@@ -54,6 +54,10 @@ export interface CustomizeViewProps {
   material: SofaNode['customization'];
   onBack: () => void;
   handleAddToCart: () => void;
+  PriceComponent: React.FC<{ 
+    material: MaterialCustomization; 
+    basePrice: number;
+  }>;
 }
 export interface custumizeSelectProps {
     setSofa: (index: number) => void;
@@ -61,6 +65,7 @@ export interface custumizeSelectProps {
     selectedSofa: number;
     onNext: () => void;
     onBack: () => void;
+
 } 
 export interface SofaCardProps {
   sofa: {

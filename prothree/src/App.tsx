@@ -7,6 +7,7 @@ import CustomizeMaterial from './components/customizeMaterial';
 import Landing from './components/landing';
 import CartIcon from './components/cartIcon';
 import { calculateSofaPrice, sofaNodeMappings, sofas } from './utils/utilities';
+import { CurrentPrice } from './components/priceComponent';
 
 
 
@@ -51,6 +52,7 @@ function App() {
   };
   setCartItems(prev => [...prev, newItem]);
 };
+
   const handleSofaChange = (id: number) => {
     setSelectedSofa(id);
     setMaterial(prev =>({
@@ -68,6 +70,8 @@ function App() {
       }
     }));
   };
+
+
   const renderStepContent = () => {
     switch(currentStep){
       case 'landing': 
@@ -84,6 +88,7 @@ function App() {
             onBack={() => setCurrentStep('landing')}
             sofas={sofas}
             selectedSofa={selectedSofa}
+           
           />
         )
         case 'customize':
@@ -93,7 +98,8 @@ function App() {
             onBack={() => setCurrentStep('select')} 
             materialChange={handleMaterialChange}  
             material={materiales.customization}   
-            handleAddToCart={handleAddToCart}     
+            handleAddToCart={handleAddToCart}  
+             PriceComponent={CurrentPrice}   
           />
         )
     }
@@ -101,6 +107,7 @@ function App() {
     const handleDeleteFromCart = (id: number) => {
       setCartItems(prev => prev.filter(item => item.sofa.id !== id));
     };
+    
   return (
     <>
      <div className='relative flex items-start   h-[100vh] w-full overflow-hidden '>
