@@ -52,7 +52,7 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
         <ambientLight intensity={1.3} castShadow />
         
           <Container />
-          
+          <FirstCadre />
           <SecondCadre />
           <FirstVase />
           <SecondVase />

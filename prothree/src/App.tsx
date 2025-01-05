@@ -9,20 +9,20 @@ import CartIcon from './components/cartIcon';
 const sofas: Sofa[] = [
   {
     id: 1,
-    name: "Monkey Sofa — Limited edition",
-    dimensions: "3.5m x 2.4m with custom colors",
+    name: "Victorian Walnut Settee",
+    dimensions: "1840mm x 900mm with custom colors",
     modelPath: "/asofa.glb" 
   },
   {
     id: 2,
-    name: "Victorian Sofa — Limited edition",
-    dimensions: "3.5m x 2.4m with custom colors",
+    name: "Victorian Mahogany Triple Camel Back Settee ",
+    dimensions: "3.5m x 1.2m with custom colors",
     modelPath: "/sofaa.glb" 
   },
   {
     id: 3,
-    name: "Modern Sofa — Limited edition",
-    dimensions: "3.5m x 2.4m with custom colors",
+    name: " Gent's Armchair",
+    dimensions: "930mm x 730mm with custom colors",
     modelPath: "/armchair.glb" 
   }
 ];

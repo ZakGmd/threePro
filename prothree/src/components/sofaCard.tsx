@@ -2,20 +2,30 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { SofaCardProps} from '../types/types';
 import ModelCard from './modelCard';
+import { Suspense, useState } from 'react';
 
 export default function SofaCard({ sofa, materials, onDelete }: SofaCardProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
 
 
     return(
         <div className="flex flex-col items-start w-full">
          <div className="flex items-center gap-2 w-full pt-2">
         <div className="w-[120px] h-[120px] relative">
+        {isLoading && (
+            <div className="absolute inset-0  rounded-lg animate-pulse flex items-center justify-center">
+              <div className="w-8 h-8 border-2 border-t-black/30 border-black/10 rounded-full animate-spin" />
+            </div>
+          )}
           <Canvas 
             camera={{ position: [0, 2, 12.5], fov: 45 }}
-            className=""
+            className={`w-full h-full rounded-lg transition-opacity duration-[570ms]  ${isLoading ? 'opacity-0' : 'opacity-100'}`}
             style={{ width: '100%', height: '100%' , background: ''  }}
+            onCreated={() => setIsLoading(false)}
 
           >
+           
             <directionalLight
             castShadow
             position={[10, 18, 11 ]}
@@ -32,6 +42,7 @@ export default function SofaCard({ sofa, materials, onDelete }: SofaCardProps) {
               minPolarAngle={Math.PI / 3}
               maxPolarAngle={Math.PI / 2}
             />
+            
           </Canvas>
         </div>
         <div className="flex items-center justify-between w-full">
