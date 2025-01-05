@@ -4,7 +4,7 @@ import SofaCard from "./sofaCard";
 
 export default function  AddToCart ({ onClose, state, cartItems, onDeleteItem }: AddToCartProps) {
 
-    
+  const total = cartItems.reduce((sum, item) => sum + (item.sofa.price || 0), 0);
 
 
   return (
@@ -26,11 +26,11 @@ export default function  AddToCart ({ onClose, state, cartItems, onDeleteItem }:
           <div className="flex flex-col items-center justify-start border-t border-black/10 pt-4 gap-3 ">
                 <div className="flex items-center justify-between w-full font-inter">
                     <div className="text-[16px]">Total</div>
-                    <div className=" font-medium ">$39000</div>
+                    <div className=" font-medium ">${total.toLocaleString()}</div>
                 </div>
                 <div className="flex flex-col items-start justify-start w-full font-inter gap-2">
                      <div className="text-[14px] text-[#0c0a0993]  font-space-mono">Tax and shipping not included </div>
-                     <div className=" py-4 text-center w-full shadow-[0_1px_3px_rgba(0,0,0,0.4),inset_0px_1.5px_0px_rgba(255,255,255,0.3)]  bg-black contrast-125 text-white rounded-md hover:bg-black/90 transition-all duration-300 cursor-pointer">Continue</div>
+                     <div onClick={onClose} className=" py-4 text-center w-full shadow-[0_1px_3px_rgba(0,0,0,0.4),inset_0px_1.5px_0px_rgba(255,255,255,0.3)]  bg-black contrast-125 text-white rounded-md hover:bg-black/90 transition-all duration-300 cursor-pointer">Continue</div>
                 </div>
             </div>
       </div>

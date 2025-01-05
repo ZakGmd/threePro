@@ -41,6 +41,7 @@ export interface Sofa {
     name: string;
     dimensions: string;
     modelPath: string;
+    basePrice: number ;
 }
 export interface CustomizeViewProps {
   selectedSofa: {
