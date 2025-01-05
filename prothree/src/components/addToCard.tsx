@@ -14,19 +14,19 @@ export default function  AddToCart ({ onClose, state, cartItems, onDeleteItem }:
           <div className="flex flex-col items-start gap-2  w-full h-full ">
               <div className="text-center font-space-mono w-full tracking-[-0.12px] ">The Art of Selection</div>
               {cartItems.length === 0 ? (
-            <div className="flex flex-col items-center justify-center w-full h-full text-black/60 font-space-mono">
-              Your card is empty
-            </div>
-          ) : (
-            cartItems.map((item) => (
-              <SofaCard
-                key={item.sofa.id}
-                sofa={item.sofa}
-                materials={item.materials}
-                onDelete={() => onDeleteItem(item.sofa.id)}
-              />
-            ))
-          )}
+                 <div className="flex flex-col items-center justify-center w-full h-full text-black/60 font-space-mono">
+                    Your card is empty
+                  </div>
+              ) : (
+                cartItems.map((item) => (
+                  <SofaCard
+                   key={item.sofa.id}
+                   sofa={item.sofa}
+                   materials={item.materials}
+                   onDelete={() => onDeleteItem(item.sofa.id)}
+                   />
+                ))
+              )}
           </div>
           <div className="flex flex-col items-center justify-start border-t border-black/10 pt-4 gap-3 ">
                 <div className="flex items-center justify-between w-full font-inter">
