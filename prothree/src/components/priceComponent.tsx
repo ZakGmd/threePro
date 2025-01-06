@@ -16,7 +16,7 @@ export const CurrentPrice: React.FC<{
     );
     
     return (
-      <div className="flex justify-between items-center gap-1">
+      <div className="flex justify-between items-center gap-1 pt-1">
         <div className='flex gap-1 font-space-mono  items-baseline text-sm text-black/40'>
             <div > Base price:</div>
             <div className='font-inter'> ${basePrice.toLocaleString()}</div>
