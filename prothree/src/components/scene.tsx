@@ -45,8 +45,8 @@ type SceneProps = {
         x: finalPosition.current.x,
         y: finalPosition.current.y,
         z: finalPosition.current.z,
-        duration: 2.7,
-        ease: "power2.inOut",
+        duration: 2.6,
+        ease: "power4.inOut",
         onComplete: () => {
           hasAnimated.current = true;
         }
