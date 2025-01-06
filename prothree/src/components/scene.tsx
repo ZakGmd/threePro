@@ -1,4 +1,4 @@
-import { Suspense} from 'react'
+import { Suspense, useEffect, useRef} from 'react'
 import { Canvas, useThree} from '@react-three/fiber'
 import { Environment, OrbitControls, ShadowAlpha,} from '@react-three/drei'
 import Model from './model'
@@ -21,21 +21,41 @@ type SceneProps = {
 
   function Animation() {
     const { camera } = useThree();
+    const hasAnimated = useRef(false);
+    const initialPosition = useRef({ x: 0, y: 15, z: 0 });
+    const finalPosition = useRef({ x: 0, y: 0.1, z: 3 });
   
-    useGSAP(() => {
-      camera.position.set(0, 15, 8);
-      
+    useEffect(() => {
+      if (hasAnimated.current) {
+        camera.position.set(
+          finalPosition.current.x,
+          finalPosition.current.y,
+          finalPosition.current.z
+        );
+        return;
+      }
+      camera.position.set(
+        initialPosition.current.x,
+        initialPosition.current.y,
+        initialPosition.current.z
+      );
+  
       const tl = gsap.timeline();
-  
       tl.to(camera.position, {
-        x: 0,
-        y: 0,
-        z: 3,
-        duration: 2.5,
-        ease: "power2.inOut"
-      });
-      return () => tl.kill();
-    }, []); 
+        x: finalPosition.current.x,
+        y: finalPosition.current.y,
+        z: finalPosition.current.z,
+        duration: 2.7,
+        ease: "power2.inOut",
+        onComplete: () => {
+          hasAnimated.current = true;
+        }
+      },'+=0.6');
+  
+      return () => {
+        tl.kill();
+      };
+    }, []);
   
     return null;
   }
@@ -48,7 +68,7 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
       <Canvas
         shadows
         id="canvas-container"
-        camera={{ position: [0, 3, 3], fov: 45, far: 300} }
+        camera={{ position: [0, 15, 0], fov: 45, far: 300} }
         gl={{ preserveDrawingBuffer: true }} 
         style={{ width: '100%', height: '100%' , background: ''  }}
       
@@ -84,13 +104,13 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
       
     
           <OrbitControls
-            //maxPolarAngle={Math.PI /2}
-           // minPolarAngle={Math.PI / 2 - 2}
-           // maxAzimuthAngle={Math.PI / 3.5}
-            //minAzimuthAngle={-Math.PI / 3.5}
-           //enableZoom={true}
-           // minDistance={1} 
-            // maxDistance={3}
+            maxPolarAngle={Math.PI /2}
+            minPolarAngle={Math.PI / 2 - 2}
+            maxAzimuthAngle={Math.PI / 3.5}
+            minAzimuthAngle={-Math.PI / 3.5}
+           enableZoom={true}
+          
+          
            
           />
           
