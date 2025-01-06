@@ -1,5 +1,6 @@
 import { Sofa, SofaNodeMappings } from "../types/types";
-
+import * as THREE from 'three';
+import gsap from 'gsap'
 
 export const sofas: Sofa[] = [
   {
@@ -24,6 +25,9 @@ export const sofas: Sofa[] = [
     basePrice: 2500
   }
 ];
+
+
+    
 export const sofaNodeMappings: SofaNodeMappings = {
 
   0: { 
@@ -110,4 +114,25 @@ export function calculateSofaPrice (basePrice: number,customization: {frame: str
   }
 
   return totalPrice;
+};
+
+export const animateColorChange = (node: THREE.Mesh, targetColorHex: string, materialProperties = {}) => {
+  const previousMaterial = node.material as THREE.MeshStandardMaterial;
+  const previousColor = previousMaterial.color.clone();
+  
+  const material = new THREE.MeshStandardMaterial({
+    ...materialProperties,
+    color: previousColor
+  });
+  
+  node.material = material;
+  const targetColor = new THREE.Color(targetColorHex);
+
+  gsap.to(material.color, {
+    r: targetColor.r,
+    g: targetColor.g,
+    b: targetColor.b,
+    duration: 0.5,
+    ease: "power2.inOut"
+  });
 };

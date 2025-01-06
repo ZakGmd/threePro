@@ -1,10 +1,8 @@
 import * as THREE from 'three'
 import { useGLTF, useTexture, } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
-
-import { useControls, folder } from 'leva'
 import { SofaNode } from '../types/types';
-
+import { animateColorChange } from '../utils/utilities';
 
 type ModelProps = {
     modelPath: string;
@@ -15,7 +13,6 @@ type ModelProps = {
 export default function Model({ modelPath , materials  } : ModelProps) {
   const { nodes, scene } = useGLTF(modelPath)
   const modelRef = useRef<THREE.Group>(null)
-  const [showHelpers, setShowHelpers] = useState(true)
 
 
   const frameTexture = useTexture(
@@ -31,7 +28,15 @@ export default function Model({ modelPath , materials  } : ModelProps) {
   useEffect(() => {
     if (!scene || !materials || !nodes ) return;
 
-    
+    if (scene) {
+      scene.traverse((child) => {
+        if (child instanceof THREE.Mesh ) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+          
+        }
+      });
+    }
     materials.nodes?.frame?.forEach(nodeId => {
       const node = nodes[`Object_${nodeId}`];
       if (node && node instanceof THREE.Mesh) {
@@ -54,12 +59,10 @@ export default function Model({ modelPath , materials  } : ModelProps) {
         if (!node.material.userData.original) {
           node.material.userData.original = node.material.clone();
         }
-        const material = new THREE.MeshStandardMaterial({
-          color: new THREE.Color(materials.customization.seatColor),
-          metalness: materials.customization.material === 'Leather' ? 0.3 : 0.1,
-          roughness: materials.customization.material === 'Velvet' ? 0.9 : 0.5
-        });
-        node.material = material;
+       animateColorChange(node, materials.customization.seatColor, {
+        metalness: materials.customization.material === 'Leather' ? 0.3 : 0.1,
+        roughness: materials.customization.material === 'Velvet' ? 0.9 : 0.5
+      });
       }
     });
 
@@ -68,18 +71,13 @@ export default function Model({ modelPath , materials  } : ModelProps) {
         pillowGroup.forEach(nodeId => {
           const node = nodes[`Object_${nodeId}`];
           if (node && node instanceof THREE.Mesh && materials.customization.pillowColor) {
-            if (!node.material.userData.original) {
-              node.material.userData.original = node.material.clone();
-            }
-            const material = new THREE.MeshStandardMaterial({
-              color: new THREE.Color(materials.customization.pillowColor),
-             
-            });
-            node.material = material;
+            animateColorChange(node, materials.customization.pillowColor);
+            
           }
         });
       });
     });
+
 
     materials.nodes?.embroidery?.forEach(nodeId => {
       const node = nodes[`Object_${nodeId}`];
@@ -107,39 +105,20 @@ export default function Model({ modelPath , materials  } : ModelProps) {
     
   }, [])
 
-  useEffect(() => {
-    if (scene) {
-      scene.traverse((child) => {
-        if (child instanceof THREE.Mesh ) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-          
-        }
-      });
-    }
-  }, [scene]);
+
 
 
 
   return (
     <>
-   
-      
       <group 
         ref={modelRef}
         position={[0, -0.50, 0]}
         scale={0.001}
-     
-        
       >
-       
-      
         <primitive 
           object={scene} 
-          
-        
         />
-
       </group>
     </>
   )

@@ -50,7 +50,7 @@ type SceneProps = {
         onComplete: () => {
           hasAnimated.current = true;
         }
-      },'+=0.6');
+      });
   
       return () => {
         tl.kill();
