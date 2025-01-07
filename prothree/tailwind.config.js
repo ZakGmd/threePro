@@ -26,10 +26,11 @@ export default {
           '100%': {transform: 'translateX(400px)', opacity: 0.4},
         }
       } ,
-      boxShadow:{
-        'custom': 'inset 0 1.5px 0 hsl(0, 0%, 24%)'
-      },
+  
+    
     },
   },
-  plugins: [],
+  plugins: [
+  
+  ],
 }

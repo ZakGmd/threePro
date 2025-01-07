@@ -97,6 +97,36 @@ export interface CardIconProps {
   onDeleteItem: (id: number) => void;
 }
 
+export interface CheckoutProps {
+  cartItems: CardItem[];
+}
+
+export interface FormData {
+  email: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  cardNumber: string;
+  cardExpiry: string;
+  cardCvc: string;
+}
+
+export interface FormErrors {
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  address?: string;
+  city?: string;
+  postalCode?: string;
+  cardNumber?: string;
+  cardExpiry?: string;
+  cardCvc?: string;
+  submit?: string;
+}
+
+
 
  
 

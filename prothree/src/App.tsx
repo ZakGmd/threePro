@@ -8,6 +8,10 @@ import Landing from './components/landing';
 import CartIcon from './components/cartIcon';
 import { calculateSofaPrice, sofaNodeMappings, sofas } from './utils/utilities';
 import { CurrentPrice } from './components/priceComponent';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
+import CheckoutPage from './components/checkOut';
+
 
 
 
@@ -70,8 +74,6 @@ function App() {
       }
     }));
   };
-
-
   const renderStepContent = () => {
     switch(currentStep){
       case 'landing': 
@@ -110,21 +112,34 @@ function App() {
     
   return (
     <>
-     <div className='relative flex items-start   h-[100vh] w-full overflow-hidden '>
+        <Router>
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <div className='relative flex items-start   h-[100vh] w-full overflow-hidden '>
      
-      <div
-          style={{border: currentStep === 'landing' ? 'none' : '' , 
-                  marginLeft: currentStep === 'landing' ? '0px' : '' ,
-                   paddingTop: currentStep === 'landing' ? '420px' : ''
-                }}
-          className='container h-full ml-[148px] w-full max-w-[720px] px-[32px]  border-r border-l border-gray-300 overflow-y-scroll  '>
-        {renderStepContent()}
-      </div>
-      <div className='w-full h-full flex '>
-        <Scene selectedModel={sofas[selectedSofa].modelPath} materials={materiales} />
-      </div>
-     <CartIcon cartItems={cartItems} onDeleteItem={handleDeleteFromCart} />
-     </div>
+            <div
+                style={{border: currentStep === 'landing' ? 'none' : '' , 
+                        marginLeft: currentStep === 'landing' ? '0px' : '' ,
+                         paddingTop: currentStep === 'landing' ? '420px' : ''
+                      }}
+                className='container h-full ml-[148px] w-full max-w-[720px] px-[32px]  border-r border-l border-gray-300 overflow-y-scroll  '>
+              {renderStepContent()}
+            </div>
+            <div className='w-full h-full flex '>
+              <Scene selectedModel={sofas[selectedSofa].modelPath} materials={materiales} />
+            </div>
+           <CartIcon cartItems={cartItems} onDeleteItem={handleDeleteFromCart} />
+           </div>
+          } 
+        />
+        <Route 
+          path="/checkout" 
+          element={<CheckoutPage cartItems={cartItems} />} 
+        />
+      </Routes>
+    </Router>
      
     </>
   )
