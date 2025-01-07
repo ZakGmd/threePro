@@ -98,9 +98,9 @@ export default function Scene({ selectedModel , materials }: SceneProps) {
           <Container />
           <FirstCadre />
           <SecondCadre />
-          <FirstVase />
+          <FirstVase position={[-1.58,-0.5,-1]} scale={0.6} />
           <SecondVase />
-          <Model modelPath={selectedModel} materials={materials} />
+          <Model modelPath={selectedModel} materials={materials}  scale={0.001}/>
       
     
           <OrbitControls

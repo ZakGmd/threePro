@@ -2,8 +2,11 @@ import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import { useEffect } from 'react';
 
-export default function FirstVase() {
-
+type VaseProps = {
+  position: [number, number, number] ;
+  scale: number ;
+}
+export default function FirstVase({position ,scale}: VaseProps) {
     const { nodes, scene } = useGLTF('/vase1.glb') ;
      useEffect(() => {
         if (scene) {
@@ -21,8 +24,8 @@ export default function FirstVase() {
         <>
              <primitive 
              object={scene} 
-             position={[-1.58,-0.5,-1]}
-             scale={0.6}
+             position={position}
+             scale={scale}
              castShadow={true}
                 receiveShadow={true}
             />

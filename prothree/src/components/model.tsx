@@ -7,10 +7,11 @@ import { animateColorChange } from '../utils/utilities';
 type ModelProps = {
     modelPath: string;
     materials: SofaNode;
+    scale:number ;
   }
   
   
-export default function Model({ modelPath , materials  } : ModelProps) {
+export default function Model({ modelPath , materials ,scale  } : ModelProps) {
   const { nodes, scene } = useGLTF(modelPath)
   const modelRef = useRef<THREE.Group>(null)
 
@@ -114,7 +115,7 @@ export default function Model({ modelPath , materials  } : ModelProps) {
       <group 
         ref={modelRef}
         position={[0, -0.50, 0]}
-        scale={0.001}
+        scale={scale}
       >
         <primitive 
           object={scene} 

@@ -1,5 +1,6 @@
 import { useState} from 'react';
 import { FormData, CheckoutProps, FormErrors } from '../types/types';
+import { CheckOutScene } from './checkoutScene';
 
 const CheckoutPage = ({ cartItems }: CheckoutProps) => {
   const [formData, setFormData] = useState<FormData>({
@@ -104,7 +105,7 @@ const CheckoutPage = ({ cartItems }: CheckoutProps) => {
       
       <div className="w-1/2 h-full">
         <div className="h-full">
-    
+            <CheckOutScene cartItems={cartItems} />
         </div>
       </div>
       <div className="w-1/2 font-inter flex flex-col h-full items-center gap-6 justify-center overflow-y-auto border-l border-gray-200">
