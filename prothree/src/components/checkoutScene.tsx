@@ -45,7 +45,7 @@ export const CheckOutScene = ({ cartItems }: MultiSofaSceneProps) => {
             intensity={2}
           />
                      
-                  <FirstVase position={[-1.58,-0.5,-1]} scale={0.7}  />
+                  <FirstVase position={[-13,-2.98,-11.4]} scale={3}  />
                    <Environment preset="night" />
                    <ambientLight intensity={0.6} castShadow />
                    <RoomContainer />
