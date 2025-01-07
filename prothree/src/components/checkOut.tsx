@@ -108,7 +108,7 @@ const CheckoutPage = ({ cartItems }: CheckoutProps) => {
         </div>
       </div>
       <div className="w-1/2 font-inter flex flex-col h-full items-center gap-6 justify-center overflow-y-auto border-l border-gray-200">
-        <div className="text-2xl font-space-mono  text-left max-w-[820px] text-[#0A090B] w-full">Payement Details</div>
+        <div className="text-xl font-space-mono  text-left max-w-[820px] text-[#2D2B32] w-full">Payement Details</div>
       
         <form onSubmit={handleSubmit} className="max-w-[820px] flex flex-col gap-5  w-full">
           <div className="flex flex-col gap-2">
@@ -292,7 +292,7 @@ const CheckoutPage = ({ cartItems }: CheckoutProps) => {
           <button 
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-4 bg-[#0A090B] text-white rounded-md transition-all duration-300 
+            className={`w-full py-4  bg-[#0A090B] text-white rounded-[10px] transition-all duration-300 
               ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-black/90'}`}
           >
             {isSubmitting ? 'Processing...' : 'Complete'}
