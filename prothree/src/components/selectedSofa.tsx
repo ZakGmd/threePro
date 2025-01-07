@@ -4,7 +4,7 @@ import { custumizeSelectProps } from "../types/types";
 export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onBack }: custumizeSelectProps){
 
     return(
-        <div className='flex flex-col items-baseline pt-[160px] gap-[180px]'>
+        <div className='flex flex-col items-baseline py-[130px] h-full justify-between gap-[20px]'>
         <div className='flex flex-col items-baseline gap-2'>
          <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono '>Your comfort matters.</div>
          <div className='text-[32px] tracking-[-0.32px] leading-normal font-inter '>Your sofa, your rules <br /> Design your dream seat</div>
