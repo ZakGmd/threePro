@@ -2,7 +2,7 @@ import { useState} from 'react';
 import { FormData, CheckoutProps, FormErrors } from '../types/types';
 import { CheckOutScene } from './checkoutScene';
 
-const CheckoutPage = ({ cartItems }: CheckoutProps) => {
+export default function CheckoutPage({ cartItems }: CheckoutProps){
   const [formData, setFormData] = useState<FormData>({
     email: '',
     firstName: '',
@@ -101,12 +101,22 @@ const CheckoutPage = ({ cartItems }: CheckoutProps) => {
   const total = cartItems.reduce((sum, item) => sum + (item.sofa.price || 0), 0);
 
   return (
-    <div className="flex h-screen w-full ">
-      
-      <div className="w-1/2 h-full">
+    <div className="flex relative h-screen w-full  ">
+      <div className=' py-2 px-3 left-[248px]  backdrop-blur-sm bg-white/5 backdrop-contrast-100 backdrop-brightness-100  flex items-center justify-center  shadow-sm border-2 border-white/5 rounded-lg bottom-[80px] absolute   z-40'>
+        <div className='flex items-center gap-1  '> 
+           {cartItems.map((item, index) => (
+                
+                
+             <div key={index} className='px-2 py-1 rounded-lg cursor-pointer hover:backdrop-blur-3xl  hover:text-white transition-colors duration-200  text-white/60 font-inter '>{item.sofa.name}</div>
+           ))}
+        </div>
+           
+        </div>
+      <div className="w-1/2 h-full relative">
         <div className="h-full">
             <CheckOutScene cartItems={cartItems} />
         </div>
+        
       </div>
       <div className="w-1/2 font-inter flex flex-col h-full items-center gap-6 justify-center overflow-y-auto border-l border-gray-200">
         <div className="text-xl font-space-mono  text-left max-w-[820px] text-[#2D2B32] w-full">Payement Details</div>
@@ -304,4 +314,3 @@ const CheckoutPage = ({ cartItems }: CheckoutProps) => {
   );
 };
 
-export default CheckoutPage;
