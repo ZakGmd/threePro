@@ -103,7 +103,7 @@ import { sofas } from "../utils/utilities";
     ]
    
     return (
-      <div className='flex flex-col items-baseline pt-[160px] gap-[120px] '>
+      <div className='flex flex-col items-baseline pt-[160px] gap-[180px] '>
         <div className='flex flex-col items-baseline gap-2'>
           <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
             Customize your sofa

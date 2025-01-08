@@ -120,8 +120,12 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
       </div>
       <div className="w-1/2 font-inter flex flex-col h-full items-center gap-6 justify-center overflow-y-auto border-l border-gray-200">
         <div className="text-xl font-space-mono  text-left max-w-[820px] text-[#2D2B32] w-full">Payement Details</div>
-      
-        <form onSubmit={handleSubmit} className="max-w-[820px] flex flex-col gap-5  w-full">
+        <div className="flex items-center gap-4 ">
+            <div className="w-[190px] h-[0.5px] bg-black/20"></div>
+            <div className="text-[16px] leading-5  font-normal text-black/50  ">Or pay with card</div>
+            <div className="w-[190px] h-[0.5px] bg-black/20"></div>
+        </div>
+        <form onSubmit={handleSubmit} className="max-w-[680px] flex flex-col gap-5  w-full">
           <div className="flex flex-col gap-2">
             <div className="text-[14px] font-inter font-medium leading-5 text-[#0A090B] tracking-tight">Contact Information</div>
             <div className="space-y-2">
