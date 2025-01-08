@@ -119,12 +119,17 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
         
       </div>
       <div className="w-1/2 font-inter flex flex-col h-full items-center gap-6 justify-center overflow-y-auto border-l border-gray-200">
-        <div className="text-xl font-space-mono  text-left max-w-[820px] text-[#2D2B32] w-full">Payement Details</div>
-        <div className="flex items-center gap-4 ">
+      <div className='flex flex-col items-start max-w-[680px] gap-3'>
+         <div className="text-xl font-space-mono  text-left max-w-[820px] text-[#2D2B32] ">Payement Details</div>
+         <div className={`w-full py-3 flex items-center justify-center gap-1 bg-[#0A090B] text-white rounded-[10px] transition-all duration-300 cursor-pointer `}>
+            <img height={18} width={18} alt='apple icon' src='apple.svg' />
+            <div className='text-[20px] leading-normal -tracking-normal'>Pay</div>
+          </div>
+         <div className="flex items-center gap-4 ">
             <div className="w-[190px] h-[0.5px] bg-black/20"></div>
             <div className="text-[16px] leading-5  font-normal text-black/50  ">Or pay with card</div>
             <div className="w-[190px] h-[0.5px] bg-black/20"></div>
-        </div>
+         </div>
         <form onSubmit={handleSubmit} className="max-w-[680px] flex flex-col gap-5  w-full">
           <div className="flex flex-col gap-2">
             <div className="text-[14px] font-inter font-medium leading-5 text-[#0A090B] tracking-tight">Contact Information</div>
@@ -313,6 +318,8 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
             {isSubmitting ? 'Processing...' : 'Complete'}
           </button>
         </form>
+      </div>
+      
       </div>
     </div>
   );
