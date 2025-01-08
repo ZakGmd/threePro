@@ -118,36 +118,36 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
         </div>
         
       </div>
-      <div className="w-1/2 font-inter flex flex-col h-full items-center gap-6 justify-center overflow-y-auto border-l border-gray-200">
-      <div className='flex flex-col items-start max-w-[680px] gap-3'>
-         <div className="text-xl font-space-mono  text-left max-w-[820px] text-[#2D2B32] ">Payement Details</div>
+      <div className="w-1/2 font-inter flex flex-col h-full items-center justify-center overflow-y-auto border-l border-gray-200">
+      <div className='flex flex-col items-start max-w-[680px] gap-5'>
+         
          <div className={`w-full py-3 flex items-center justify-center gap-1 bg-[#0A090B] text-white rounded-[10px] transition-all duration-300 cursor-pointer `}>
             <img height={18} width={18} alt='apple icon' src='apple.svg' />
             <div className='text-[20px] leading-normal -tracking-normal'>Pay</div>
           </div>
-         <div className="flex items-center gap-4 ">
+         <div className="flex items-center gap-3 my-4 ">
             <div className="w-[190px] h-[0.5px] bg-black/20"></div>
             <div className="text-[16px] leading-5  font-normal text-black/50  ">Or pay with card</div>
             <div className="w-[190px] h-[0.5px] bg-black/20"></div>
          </div>
+         <div className="text-xl font-medium  text-left max-w-[820px] text-[#2D2B32] ">Shipping information</div>
         <form onSubmit={handleSubmit} className="max-w-[680px] flex flex-col gap-5  w-full">
-          <div className="flex flex-col gap-2">
-            <div className="text-[14px] font-inter font-medium leading-5 text-[#0A090B] tracking-tight">Contact Information</div>
-            <div className="space-y-2">
+          <div className="flex flex-col gap-1">
+            <div className="text-[14px] font-inter font-medium leading-5 text-[#0a090b] tracking-tight">Email</div>
+            <div className={`w-full py-2 px-3 flex items-center gap-1  ${errors.email ? 'border-red-500/60' : 'border-[#E6E6E6]'}  border-[0.5px] rounded-[8px] outline-none  shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]`}>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder="Email"
-                className={`w-full py-2 pl-3  pr-2 border-[0.5px] rounded-[8px] outline-none  shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)] ${
-                  errors.email ? 'border-red-500/60' : 'border-[#E6E6E6]'
-                }`}
+                
+                className=" w-full text-[18px] outline-none "
               />
-              {errors.email && (
-                <p className="text-red-500/90 text-sm">{errors.email}</p>
-              )}
+              <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#0a090b71"><path d="M7 9L12 12.5L17 9" stroke="#0a090b71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 17V7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V17C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" stroke="#0a090b71" stroke-width="1.5"></path></svg>              
             </div>
+            {errors.email && (
+                <p className="text-red-500/90 text-sm">{errors.email}</p>
+            )}
           </div>
           
           <div className="flex flex-col items-start gap-2 w-full">
