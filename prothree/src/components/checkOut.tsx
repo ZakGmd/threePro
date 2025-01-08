@@ -1,6 +1,7 @@
 import { useState} from 'react';
 import { FormData, CheckoutProps, FormErrors } from '../types/types';
 import { CheckOutScene } from './checkoutScene';
+import { SelectCountry } from './select';
 
 export default function CheckoutPage({ cartItems }: CheckoutProps){
   const [formData, setFormData] = useState<FormData>({
@@ -167,8 +168,8 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                   <p className="text-red-500/90 text-sm">{errors.firstName}</p>
                 )}
               </div>
-              <div className='py-2'>
-                select
+              <div className=' w-full'>
+                <SelectCountry />
               </div>  
                 
             <div className='w-full'>
