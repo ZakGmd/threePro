@@ -142,7 +142,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                 value={formData.email}
                 onChange={handleInputChange}
                 
-                className=" w-full text-[18px] outline-none "
+                className=" w-full text-sm placeholder:text-[16px] outline-none "
               />
               <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#0a090b71"><path d="M7 9L12 12.5L17 9" stroke="#0a090b71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 17V7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V17C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" stroke="#0a090b71" stroke-width="1.5"></path></svg>              
             </div>
@@ -153,34 +153,34 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
           
           <div className="flex flex-col items-start gap-2 w-full">
             <div className="text-[14px] font-inter font-medium leading-5 text-[#0A090B] tracking-tight">Shipping Address</div>
-            <div className='flex flex-col items-start  gap-1 w-full border-[#E6E6E6] border-[0.5px] rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]'>
-              <div className=' w-full'>
+            <div className='flex flex-col items-start   w-full border-[#E6E6E6] border-[0.5px] rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]'>
+              <div className=' w-full pt-1'>
                 <SelectCountry />
               </div>  
 
               <div className='flex items-center w-full border-t border-[#E6E6E6]'>
-              <div className='w-full h-full   '>
+              <div className='w-full h-full py-2 border-r border-[#E6E6E6]  '>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
                   placeholder="First name"
-                  className={`w-full  pl-3 pr-2 border-r border-[#E6E6E6] outline-none   ${errors.firstName ? 'border-red-500/60' : ''}`}
+                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none   ${errors.firstName ? 'border-red-500/60' : ''}`}
                 />
                 {errors.firstName && (
                   <p className="text-red-500/90 text-sm">{errors.firstName}</p>
                 )}
               </div>
               
-              <div className='w-full'>
+              <div className='w-full h-full py-2 '>
               <input
                 type="text"
                 name="address"
                 value={formData.address}
                 onChange={handleInputChange}
                 placeholder="Address"
-                className={`w-full  pl-3 pr-2    outline-none ${errors.address ? 'border-red-500/60' : 'border-[#E6E6E6]'}`}
+                className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none ${errors.address ? 'border-red-500/60' : 'border-[#E6E6E6]'}`}
               />
               {errors.address && (
                 <p className="text-red-500/90 text-sm">{errors.address}</p>
@@ -194,25 +194,31 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
 
           <div className="flex flex-col items-start gap-2 w-full">
             <div className="text-[14px] font-inter font-medium leading-5 text-[#0A090B] tracking-tight">Payment Details</div>
-            <div className='flex flex-col items-start gap-4 w-full' >
-                 <div className='w-full'>
-              <input
-                type="text"
+            <div className='flex flex-col items-start w-full border-[#E6E6E6] border-[0.5px] rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]' >
+              <div className='w-full flex items-center pr-2  border-b pt-1 '>
+                   <input
+                    type="text"
                 name="cardNumber"
                 value={formData.cardNumber}
                 onChange={handleInputChange}
                 placeholder="Card number"
                 maxLength={19}
-                className={`w-full py-2 pl-3 pr-2 border-[0.5px] rounded-[8px] outline-none  shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)] ${
+                className={`w-full py-2 pl-3 max-w-[350px] text-sm placeholder:text-[16px] pr-2  rounded-[8px] outline-none   ${
                   errors.cardNumber ? 'border-red-500/60' : 'border-[#E6E6E6]'
-                }`}
-              />
-              {errors.cardNumber && (
+                    }`}
+                  />
+                  <div className='flex items-center justify-end w-full  gap-[4px]'>
+                    <img src="visa.svg" alt="" height={32} width={32} />
+                    <img src="amazon.svg" alt="" height={32} width={32} />
+                    <img src="mastercard.svg" alt="" height={32} width={32} />
+                    <img src="american-express.svg" alt="" height={32} width={32} />
+                  </div>
+                  {errors.cardNumber && (
                 <p className="text-red-500/90 text-sm">{errors.cardNumber}</p>
-              )}
-            </div>
-            <div className="grid grid-cols-2 gap-4 w-full">
-              <div>
+                  )}
+              </div>
+            <div className="flex items-center w-full">
+              <div className='w-1/2  py-2 border-r border-[#E6E6E6]'>
                 <input
                   type="text"
                   name="cardExpiry"
@@ -220,7 +226,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                   onChange={handleInputChange}
                   placeholder="MM/YY"
                   maxLength={5}
-                  className={`w-full py-2 pl-3 pr-2 border-[0.5px] rounded-[8px] outline-none  shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)] ${
+                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]  rounded-[8px] outline-none   ${
                     errors.cardExpiry ? 'border-red-500/60' : 'border-[#E6E6E6]'
                   }`}
                 />
@@ -228,7 +234,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                   <p className="text-red-500/90 text-sm">{errors.cardExpiry}</p>
                 )}
               </div>
-              <div>
+              <div className='w-1/2  py-2'>
                 <input
                   type="text"
                   name="cardCvc"
@@ -236,7 +242,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                   onChange={handleInputChange}
                   placeholder="CVC"
                   maxLength={4}
-                  className={`w-full py-2 pl-3 pr-2 border-[0.5px] rounded-[8px] outline-none  shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)] ${
+                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]  rounded-[8px] outline-none   ${
                     errors.cardCvc ? 'border-red-500/60' : 'border-[#E6E6E6]'
                   }`}
                 />

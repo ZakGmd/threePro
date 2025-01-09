@@ -11,7 +11,7 @@ import {
 export function SelectCountry() {
   return (
     <Select>
-      <SelectTrigger className="w-full border-none pl-3 pr-2 outline-none ring-0 shadow-none  focus:ring-0">
+      <SelectTrigger className="w-full border-none outline-none ring-0 shadow-none  focus:ring-0">
         <SelectValue  placeholder={<span className="text-[16px] text-gray-400/90  font-inter">United States</span>}  />
       </SelectTrigger>
       <SelectContent className="text-black/50 transition-colors duration-300 cursor-pointer">
