@@ -153,39 +153,41 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
           
           <div className="flex flex-col items-start gap-2 w-full">
             <div className="text-[14px] font-inter font-medium leading-5 text-[#0A090B] tracking-tight">Shipping Address</div>
-            <div className='flex flex-col items-start py-2 gap-1 w-full border-[#E6E6E6] border-[0.5px] rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]'>
-         
-              <div className='w-full   '>
+            <div className='flex flex-col items-start  gap-1 w-full border-[#E6E6E6] border-[0.5px] rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]'>
+              <div className=' w-full'>
+                <SelectCountry />
+              </div>  
+
+              <div className='flex items-center w-full border-t border-[#E6E6E6]'>
+              <div className='w-full h-full   '>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
                   placeholder="First name"
-                  className={`w-full pb-2 pt-1 pl-3 pr-2 border-b border-[#E6E6E6] outline-none   ${errors.firstName ? 'border-red-500/60' : ''}`}
+                  className={`w-full  pl-3 pr-2 border-r border-[#E6E6E6] outline-none   ${errors.firstName ? 'border-red-500/60' : ''}`}
                 />
                 {errors.firstName && (
                   <p className="text-red-500/90 text-sm">{errors.firstName}</p>
                 )}
               </div>
-              <div className=' w-full'>
-                <SelectCountry />
-              </div>  
-                
-            <div className='w-full'>
+              
+              <div className='w-full'>
               <input
                 type="text"
                 name="address"
                 value={formData.address}
                 onChange={handleInputChange}
                 placeholder="Address"
-                className={`w-full  pl-3 pr-2 border-t pt-3  outline-none ${errors.address ? 'border-red-500/60' : 'border-[#E6E6E6]'}`}
+                className={`w-full  pl-3 pr-2    outline-none ${errors.address ? 'border-red-500/60' : 'border-[#E6E6E6]'}`}
               />
               {errors.address && (
                 <p className="text-red-500/90 text-sm">{errors.address}</p>
               )}
-            </div>
-            
+              </div>
+              </div>
+              
             </div>
             <div className='text-[14px] font-inter font-medium leading-5 text-[#0a090b65] tracking-tight underline'>Enter adress manually</div>
           </div>
