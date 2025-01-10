@@ -106,7 +106,8 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
 
   return (
     <div className="flex relative h-screen w-full  ">
-      <div className=' py-2 px-3 left-[108px]  backdrop-blur-sm bg-white/5 backdrop-contrast-100 backdrop-brightness-100  flex items-center justify-center  shadow-sm border-2 border-white/5 rounded-lg bottom-[80px] absolute   z-40'>
+      <div className='flex items-center justify-center absolute w-1/2  bottom-[80px]  z-40'>
+      <div className=' py-2 px-3  backdrop-blur-sm bg-white/5 backdrop-contrast-100 backdrop-brightness-100  flex items-center justify-center  shadow-sm border-2 border-white/5 rounded-lg'>
         <div className='flex items-center gap-1  '> 
            {cartItems.map((item, index) => (
             <div 
@@ -123,6 +124,8 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
         </div>
            
         </div>
+      </div>
+      
       <div className="w-1/2 h-full relative">
         <div className="h-full">
             <CheckOutScene cartItems={cartItems} selectedSofaIndex={selectedSofaIndex} />
