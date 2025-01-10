@@ -21,7 +21,8 @@ export default {
   		},
   		animation: {
   			fadeIn: 'fadeIn 0.4s ease forwards',
-  			fadeOut: 'fadeOut 0.4s ease forwards'
+  			fadeOut: 'fadeOut 0.4s ease forwards',
+			fade: 'fadeText 0.2s ease forwards'
   		},
   		keyframes: {
   			fadeIn: {
@@ -43,7 +44,15 @@ export default {
   					transform: 'translateX(400px)',
   					opacity: 0.4
   				}
-  			}
+  			},
+			fadeText: {
+				'0%': {
+  					opacity: 0.4
+  				},
+  				'100%': {
+  					opacity: 1
+  				}
+			}
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

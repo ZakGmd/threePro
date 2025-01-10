@@ -135,7 +135,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
         <form onSubmit={handleSubmit} className="max-w-[680px] flex flex-col gap-5  w-full">
           <div className="flex flex-col gap-1">
             <div className="text-[14px] font-inter font-medium leading-5 text-[#0a090b] tracking-tight">Email</div>
-            <div className={`w-full py-2 px-3 flex items-center gap-1  ${errors.email ? 'border-red-500/60' : 'border-[#E6E6E6]'}  border-[0.5px] rounded-[8px] outline-none  shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]`}>
+            <div className={`w-full py-2 px-3 flex items-center gap-1  transition-all duration-300 ${errors.email ? 'border-red-500/60' : 'border-[#E6E6E6]'}  border-[0.5px] rounded-[8px] outline-none  shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]`}>
               <input
                 type="email"
                 name="email"
@@ -147,48 +147,49 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
               <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#0a090b71"><path d="M7 9L12 12.5L17 9" stroke="#0a090b71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 17V7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V17C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" stroke="#0a090b71" stroke-width="1.5"></path></svg>              
             </div>
             {errors.email && (
-                <p className="text-red-500/90 text-sm">{errors.email}</p>
+                <p className="text-red-500/90 text-sm animate-fade">{errors.email}</p>
             )}
           </div>
           
           <div className="flex flex-col items-start gap-2 w-full">
             <div className="text-[14px] font-inter font-medium leading-5 text-[#0A090B] tracking-tight">Shipping Address</div>
-            <div className='flex flex-col items-start   w-full border-[#E6E6E6] border-[0.5px] rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]'>
-              <div className=' w-full pt-1'>
+            
+            <div className='flex flex-col items-start w-full gap-1'>
+                <div className='flex flex-col items-start   w-full border-[#E6E6E6] border-b-0   rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]'>
+             
+              <div className=' w-full  '>
                 <SelectCountry />
               </div>  
-
+            
               <div className='flex items-center w-full border-t border-[#E6E6E6]'>
-              <div className='w-full h-full py-2 border-r border-[#E6E6E6]  '>
-                <input
+                <div className={`w-full h-full py-2 border-r border-b border-l rounded-bl-[8px] border-[0.5px] border-t-0 border-[#E6E6E6] ${errors.firstName ? 'border-red-500/60 border-r-[#E6E6E6] ' : ''} transition-all duration-300  `}>
+                  <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
                   placeholder="First name"
-                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none   ${errors.firstName ? 'border-red-500/60' : ''}`}
-                />
-                {errors.firstName && (
-                  <p className="text-red-500/90 text-sm">{errors.firstName}</p>
-                )}
-              </div>
+                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none   `}
+                  />
               
-              <div className='w-full h-full py-2 '>
+                </div>
+                <div className={`w-full h-full py-2 border-b border-r border-t-0 border-l-0 border-[0.5px] rounded-br-[8px] border-[#E6E6E6] ${errors.address ? 'border-red-500/60 ' : ''} transition-all duration-300  `}>
               <input
                 type="text"
                 name="address"
                 value={formData.address}
                 onChange={handleInputChange}
                 placeholder="Address"
-                className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none ${errors.address ? 'border-red-500/60' : 'border-[#E6E6E6]'}`}
+                className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none ${errors.address ? 'border-red-500/60' : 'border-[#E6E6E6]'} `}
               />
-              {errors.address && (
-                <p className="text-red-500/90 text-sm">{errors.address}</p>
-              )}
-              </div>
+             
+                </div>
               </div>
               
+                </div>
+                {errors.address ? <p className="text-red-500/90 text-sm">{errors.address}</p> : <p className="text-red-500/90 text-sm">{errors.firstName}</p>  }
             </div>
+            
             <div className='text-[14px] font-inter font-medium leading-5 text-[#0a090b65] tracking-tight underline'>Enter adress manually</div>
           </div>
 
