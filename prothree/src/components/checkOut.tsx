@@ -4,6 +4,9 @@ import { CheckOutScene } from './checkoutScene';
 import { SelectCountry } from './select';
 
 export default function CheckoutPage({ cartItems }: CheckoutProps){
+  const [selectedSofaIndex, setSelectedSofaIndex] = useState<number | null>(null);
+
+  console.log(selectedSofaIndex)
   const [formData, setFormData] = useState<FormData>({
     email: '',
     firstName: '',
@@ -25,7 +28,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
     } 
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
+      newErrors.firstName = 'Full name is required';
     }
 
     if (!formData.lastName.trim()) {
@@ -106,16 +109,23 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
       <div className=' py-2 px-3 left-[108px]  backdrop-blur-sm bg-white/5 backdrop-contrast-100 backdrop-brightness-100  flex items-center justify-center  shadow-sm border-2 border-white/5 rounded-lg bottom-[80px] absolute   z-40'>
         <div className='flex items-center gap-1  '> 
            {cartItems.map((item, index) => (
-                
-                
-             <div key={index} className='px-2 py-1 rounded-lg cursor-pointer hover:backdrop-blur-3xl  hover:text-white transition-colors duration-200  text-white/60 font-inter '>{item.sofa.name}</div>
+            <div 
+              key={index} 
+              className={`px-2 py-1 rounded-lg cursor-pointer hover:backdrop-blur-3xl transition-colors duration-200 
+                          ${selectedSofaIndex === index ? 'text-white bg-white/10' : 'text-white/60'} 
+                        font-inter`
+                      }
+            onClick={() => setSelectedSofaIndex(index )}
+          >
+            {item.sofa.name}
+          </div>
            ))}
         </div>
            
         </div>
       <div className="w-1/2 h-full relative">
         <div className="h-full">
-            <CheckOutScene cartItems={cartItems} />
+            <CheckOutScene cartItems={cartItems} selectedSofaIndex={selectedSofaIndex} />
         </div>
         
       </div>
@@ -165,10 +175,10 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                 <div className={`w-full h-full py-2 border-r border-b border-l rounded-bl-[8px] border-[0.5px] border-t-0 border-[#E6E6E6] ${errors.firstName ? 'border-red-500/60 border-r-[#E6E6E6] ' : ''} transition-all duration-300  `}>
                   <input
                   type="text"
-                  name="firstName"
+                  name="FullName"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  placeholder="First name"
+                  placeholder="Full name"
                   className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none   `}
                   />
               
@@ -180,14 +190,15 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                 value={formData.address}
                 onChange={handleInputChange}
                 placeholder="Address"
-                className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none ${errors.address ? 'border-red-500/60' : 'border-[#E6E6E6]'} `}
+                className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none  `}
               />
              
                 </div>
               </div>
               
                 </div>
-                {errors.address ? <p className="text-red-500/90 text-sm">{errors.address}</p> : <p className="text-red-500/90 text-sm">{errors.firstName}</p>  }
+               
+                {errors.firstName ? <p className="text-red-500/90 text-sm animate-fade">{errors.firstName}</p> : <p className="text-red-500/90 text-sm animate-fade">{errors.address}</p>  }
             </div>
             
             <div className='text-[14px] font-inter font-medium leading-5 text-[#0a090b65] tracking-tight underline'>Enter adress manually</div>
