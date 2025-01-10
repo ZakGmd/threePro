@@ -255,17 +255,10 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
            
           </div>
 
-          <div className=" flex flex-col gap-7 border-gray-200 mt-4">
-           
-            <div className="flex flex-col justify-between font-medium text-lg pt-2">
-            <div className="h-[0.5px] w-full bg-black/10 shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.2px_0.2px_rgba(0,0,0,0.1)] rounded-md"></div>
-             <div className='flex  justify-between pt-4'>
-             <div>Total</div>
-             <div>${total.toLocaleString()}</div>
-             </div>
-            </div>
-          </div>
-
+          
+          <div className=" flex flex-col gap-1 bg-amber-50/90 px-3 py-2 rounded-[8px] tracking-[-0.12px] text-amber-950/80 ">
+              <div>This will be set as the default project <br />payment method.</div>
+         </div>       
           {errors.submit && (
             <div className="bg-red-50 border border-red-400 text-red-700 px-4 py-3 rounded relative">
               {errors.submit}
@@ -278,9 +271,14 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
             className={`w-full py-4  bg-[#0A090B] text-white rounded-[10px] transition-all duration-300 
               ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-black/90'}`}
           >
-            {isSubmitting ? 'Processing...' : 'Complete'}
+            {isSubmitting ? 'Processing...' : `Pay $${total.toLocaleString()}`}
           </button>
+         
         </form>
+        <div className=" flex items-center justify-center w-full gap-1 bg-[#F9FBFC] px-3 py-2 rounded-[8px] tracking-[-0.12px] text-amber-950/80 ">
+            <svg className='mb-[1px]' width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#0a090b71"><path d="M16 12H17.4C17.7314 12 18 12.2686 18 12.6V19.4C18 19.7314 17.7314 20 17.4 20H6.6C6.26863 20 6 19.7314 6 19.4V12.6C6 12.2686 6.26863 12 6.6 12H8M16 12V8C16 6.66667 15.2 4 12 4C8.8 4 8 6.66667 8 8V12M16 12H8" stroke="#0a090b71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <div className='text-[14px] font-inter font-medium leading-5 text-[#0A090B]/70 tracking-tight'>Payment are secure and encrypted</div>
+        </div> 
       </div>
       
       </div>
