@@ -17,6 +17,7 @@
     "@types/three": "^0.171.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap-trial": "^3.12.5",
     "leva": "^0.9.35",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",

@@ -178,11 +178,11 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                 <div className={`w-full h-full py-2 border-r border-b border-l rounded-bl-[8px] border-[0.5px] border-t-0 border-[#E6E6E6] ${errors.firstName ? 'border-red-500/60 border-r-[#E6E6E6] ' : ''} transition-all duration-300  `}>
                   <input
                   type="text"
-                  name="FullName"
+                  name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
                   placeholder="Full name"
-                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none   `}
+                  className="w-full  pl-3 pr-2 text-sm placeholder:text-[16px]   outline-none    "
                   />
               
                 </div>
@@ -209,8 +209,8 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
 
           <div className="flex flex-col items-start gap-2 w-full">
             <div className="text-[14px] font-inter font-medium leading-5 text-[#0A090B] tracking-tight">Payment Details</div>
-            <div className='flex flex-col items-start w-full border-[#E6E6E6] border-[0.5px] rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]' >
-              <div className='w-full flex items-center pr-2  border-b pt-1 '>
+            <div className='flex flex-col items-start w-full   rounded-[8px] shadow-[0_0.2px_0px_rgba(0,0,0,0.1),inset_0px_0.3px_0.3px_rgba(0,0,0,0.1)]' >
+              <div className={`w-full flex items-center pr-2  rounded-tr-[8px]  border-[0.5px]  rounded-tl-[8px] ${errors.cardNumber ? 'border-red-500/60 border-b-[#E6E6E6]' : 'border-[#E6E6E6]'}   pt-1 `}>
                    <input
                     type="text"
                 name="cardNumber"
@@ -218,9 +218,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                 onChange={handleInputChange}
                 placeholder="Card number"
                 maxLength={19}
-                className={`w-full py-2 pl-3 max-w-[350px] text-sm placeholder:text-[16px] pr-2  rounded-[8px] outline-none   ${
-                  errors.cardNumber ? 'border-red-500/60' : 'border-[#E6E6E6]'
-                    }`}
+                className={`w-full py-2 pl-3 max-w-[350px] text-sm placeholder:text-[16px] pr-2  rounded-[8px] outline-none   `}
                   />
                   <div className='flex items-center justify-end w-full  gap-[4px]'>
                     <img src="visa.svg" alt="" height={32} width={32} />
@@ -228,12 +226,10 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                     <img src="mastercard.svg" alt="" height={32} width={32} />
                     <img src="american-express.svg" alt="" height={32} width={32} />
                   </div>
-                  {errors.cardNumber && (
-                <p className="text-red-500/90 text-sm">{errors.cardNumber}</p>
-                  )}
+                 
               </div>
             <div className="flex items-center w-full">
-              <div className='w-1/2  py-2 border-r border-[#E6E6E6]'>
+              <div className={`w-1/2  py-2 border-r border-l border-b border-t-0 rounded-bl-[8px] border-[0.5px]  ${errors.cardExpiry ? 'border-red-500/60 border-r-[#E6E6E6]' : 'border-[#E6E6E6]'}`}>
                 <input
                   type="text"
                   name="cardExpiry"
@@ -241,15 +237,11 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                   onChange={handleInputChange}
                   placeholder="MM/YY"
                   maxLength={5}
-                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]  rounded-[8px] outline-none   ${
-                    errors.cardExpiry ? 'border-red-500/60' : 'border-[#E6E6E6]'
-                  }`}
+                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]  rounded-[8px] outline-none `}
                 />
-                {errors.cardExpiry && (
-                  <p className="text-red-500/90 text-sm">{errors.cardExpiry}</p>
-                )}
+                
               </div>
-              <div className='w-1/2  py-2'>
+              <div className={`w-1/2 border-r border-b border-l-0 border-t-0 rounded-br-[8px]  py-2 ${errors.cardCvc ? 'border-red-500/60' : 'border-[#E6E6E6]'}`}>
                 <input
                   type="text"
                   name="cardCvc"
@@ -257,22 +249,19 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
                   onChange={handleInputChange}
                   placeholder="CVC"
                   maxLength={4}
-                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]  rounded-[8px] outline-none   ${
-                    errors.cardCvc ? 'border-red-500/60' : 'border-[#E6E6E6]'
-                  }`}
+                  className={`w-full  pl-3 pr-2 text-sm placeholder:text-[16px]  rounded-[8px] outline-none   `}
                 />
-                {errors.cardCvc && (
-                  <p className="text-red-500/90 text-sm">{errors.cardCvc}</p>
-                )}
+                
               </div>
             </div>
+
             </div>
-           
+              {errors.cardNumber ? <p className="text-red-500/90 text-sm">{errors.cardNumber}</p> : errors.cardExpiry ? <p className="text-red-500/90 text-sm">{errors.cardExpiry}</p>: <p className="text-red-500/90 text-sm">{errors.cardCvc}</p>}
           </div>
 
           
-          <div className=" flex flex-col gap-1 bg-amber-50/90 px-3 py-2 rounded-[8px] tracking-[-0.12px] text-amber-950/80 ">
-              <div>This will be set as the default project <br />payment method.</div>
+          <div className=" flex flex-col gap-1 bg-amber-50/70 px-3 py-2 rounded-[8px] tracking-[-0.12px] text-amber-950/60 ">
+              <div>This will be set as the default project payment method.</div>
          </div>       
           {errors.submit && (
             <div className="bg-red-50 border border-red-400 text-red-700 px-4 py-3 rounded relative">

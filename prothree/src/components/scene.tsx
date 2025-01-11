@@ -21,7 +21,7 @@ type SceneProps = {
 function Animation() {
   const { camera } = useThree()
   const hasAnimated = useRef(false)
-  const initialPosition = useRef({ x: 0, y: 15, z: 0 })
+  const initialPosition = useRef({ x: 0, y: 5, z: 0 })
   const finalPosition = useRef({ x: 0, y: 0.1, z: 3 })
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function Animation() {
       x: finalPosition.current.x,
       y: finalPosition.current.y,
       z: finalPosition.current.z,
-      duration: 2.6,
+      duration: 2.2,
       ease: "power4.inOut",
       onComplete: () => {
         hasAnimated.current = true
@@ -63,7 +63,7 @@ export default function Scene({ selectedModel, materials }: SceneProps) {
   return (
     <Canvas
       shadows="soft"
-      camera={{ position: [0, 15, 0], fov: 45, far: 300 }}
+      camera={{ position: [0, 5, 0], fov: 45, far: 300 }}
       gl={{ 
         preserveDrawingBuffer: true,
         antialias: true

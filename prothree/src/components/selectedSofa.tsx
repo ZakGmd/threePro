@@ -1,13 +1,36 @@
 import { custumizeSelectProps } from "../types/types";
-
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import SplitText from "gsap-trial/SplitText" ;
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(SplitText) ;
 
 export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onBack }: custumizeSelectProps){
+  const container = useRef(null) ;
+
+  useGSAP(()=>{
+    const tl = gsap.timeline() ;
+    var splitSecondText = new SplitText('.secondText',{type: "words"}) ;
+
+    tl.from(".firstText",{
+        autoAlpha: 0,
+        duration: 1 ,
+         ease: 'power2.inOut'
+      }).from(splitSecondText.words ,{
+        duration: 0.9,    
+        autoAlpha: 0 ,
+        stagger: 0.0586 ,
+        ease: 'power2.inOut'
+    },'-=0.5')
+     
+},{scope: container})
 
     return(
-        <div className='flex flex-col items-baseline py-[130px] h-full justify-between gap-[20px]'>
+        <div className='flex flex-col items-baseline py-[180px] h-full  gap-[270px] ' ref={container}>
         <div className='flex flex-col items-baseline gap-2'>
-         <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono '>Your comfort matters.</div>
-         <div className='text-[32px] tracking-[-0.32px] leading-normal font-inter '>Your sofa, your rules <br /> Design your dream seat</div>
+         <div className='firstText   text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono '>Your comfort matters.</div>
+         <div className='secondText text-[32px] tracking-[-0.32px] leading-normal font-inter '>Your sofa, your rules <br /> Design your dream seat</div>
         </div>
         <div className='flex flex-col items-baseline  gap-2 w-full'>
          <div className='text-black/60 text-[14px] font-normal uppercase leading-normal  font-space-mono'>Choose your Model</div>
