@@ -65,7 +65,8 @@ export interface custumizeSelectProps {
     selectedSofa: number;
     onNext: () => void;
     onBack: () => void;
-
+    hasAnimationPlayed?: boolean;
+    setHasAnimationPlayed?: (value: boolean) => void;
 } 
 export interface SofaCardProps {
   sofa: {

@@ -6,11 +6,12 @@ import SplitText from "gsap-trial/SplitText" ;
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(SplitText) ;
 
-export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onBack }: custumizeSelectProps){
+export default function SelectSofa({ selectedSofa ,setSofa,hasAnimationPlayed ,setHasAnimationPlayed ,  sofas , onNext ,onBack }: custumizeSelectProps){
   const container = useRef(null) ;
-  const isAnimated = false ;
+  
   useGSAP(()=>{
-     if(isAnimated) return ;
+    if(hasAnimationPlayed) return ;
+
 
     const tl = gsap.timeline() ;
     var splitSecondText = new SplitText('.secondText',{type: "words"}) ;
@@ -43,7 +44,8 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onB
       y:10 ,
       autoAlpha: 0,
       duration: 0.5 ,
-       ease: 'power2.inOut'
+       ease: 'power2.inOut',
+       onComplete: ()=> setHasAnimationPlayed && setHasAnimationPlayed(true)
     },"-=0.5")
      
 },{scope: container})
@@ -61,8 +63,11 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onB
              <div 
                key={sofa.id}
                onClick={() => setSofa(index)}
-               className={`cards invisible flex items-center gap-4 py-3 px-4  rounded-[6px] w-full cursor-pointer transition-all duration-300 
-                 ${selectedSofa === index ? 'border-2 border-[#DF521B]' : 'border-2 border-transparent bg-[#F5F5F5]'}`}
+               className={`cards  flex items-center gap-4 py-3 px-4  rounded-[6px] w-full cursor-pointer transition-all duration-300 
+                 ${selectedSofa === index ? 'border-2 border-[#DF521B]' : 'border-2 border-transparent bg-[#F5F5F5]'}
+                 ${hasAnimationPlayed ? 'visible' : 'invisible'}
+                 `}
+
              >
                <input 
                  type="radio" 

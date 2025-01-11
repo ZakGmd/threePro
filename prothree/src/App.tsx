@@ -36,6 +36,7 @@ function App() {
     }
     });
   const [cartItems, setCartItems] = useState<CardItem[]>([]);
+  const [hasAnimationPlayed, setHasAnimationPlayed] = useState(false)
   const finalPrice = calculateSofaPrice(
       sofas[selectedSofa].basePrice,
       {
@@ -90,7 +91,8 @@ function App() {
             onBack={() => setCurrentStep('landing')}
             sofas={sofas}
             selectedSofa={selectedSofa}
-           
+            hasAnimationPlayed={hasAnimationPlayed}
+            setHasAnimationPlayed={setHasAnimationPlayed}
           />
         )
         case 'customize':
