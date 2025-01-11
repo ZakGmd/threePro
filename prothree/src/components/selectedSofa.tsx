@@ -14,15 +14,35 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onB
     var splitSecondText = new SplitText('.secondText',{type: "words"}) ;
 
     tl.from(".firstText",{
+        y: 20,
         autoAlpha: 0,
         duration: 1 ,
-         ease: 'power2.inOut'
+         ease: 'power3.out'
       }).from(splitSecondText.words ,{
-        duration: 0.9,    
+        duration: 0.6,    
         autoAlpha: 0 ,
-        stagger: 0.0586 ,
-        ease: 'power2.inOut'
-    },'-=0.5')
+        stagger: 0.099 ,
+        ease: 'power2.in'
+    },'-=0.75').from(".thirdText",{
+      y: 20,
+      autoAlpha: 0,
+      duration: 0.5 ,
+      ease: 'power3.out'
+    },"-=0.4").fromTo(".cards",{
+      y: -10 ,
+      autoAlpha: 0 ,
+    },{
+     y: 0 ,
+      autoAlpha:1 ,
+      stagger: 0.12 ,
+      duration: 0.4 ,
+      ease: 'power4.in'
+    },"<").from(".btns",{
+      y:10 ,
+      autoAlpha: 0,
+      duration: 0.5 ,
+       ease: 'power2.inOut'
+    },"-=0.5")
      
 },{scope: container})
 
@@ -33,13 +53,13 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onB
          <div className='secondText text-[32px] tracking-[-0.32px] leading-normal font-inter '>Your sofa, your rules <br /> Design your dream seat</div>
         </div>
         <div className='flex flex-col items-baseline  gap-2 w-full'>
-         <div className='text-black/60 text-[14px] font-normal uppercase leading-normal  font-space-mono'>Choose your Model</div>
+         <div className=' thirdText text-black/60 text-[14px] font-normal uppercase leading-normal  font-space-mono'>Choose your Model</div>
          <div className='flex flex-col items-start  gap-3 w-full font-inter'>
          {sofas.map((sofa, index) => (
              <div 
                key={sofa.id}
                onClick={() => setSofa(index)}
-               className={`flex items-center gap-4 py-3 px-4  rounded-[6px] w-full cursor-pointer transition-all duration-300 
+               className={`cards invisible flex items-center gap-4 py-3 px-4  rounded-[6px] w-full cursor-pointer transition-all duration-300 
                  ${selectedSofa === index ? 'border-2 border-[#DF521B]' : 'border-2 border-transparent bg-[#F5F5F5]'}`}
              >
                <input 
@@ -60,7 +80,7 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onB
            ))}
          </div>
          <div className='mt-10 flex w-full justify-between '>
-          <div className="flex items-center w-full justify-between">
+          <div className="btns flex items-center w-full justify-between">
               <div onClick={onBack} className=' py-3 px-4  text-black border-black border cursor-pointer rounded-[48px] hover:bg-black/5 transition-colors '  >
                Back
               </div>
