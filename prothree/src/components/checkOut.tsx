@@ -106,7 +106,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
 
   return (
     <div className="flex relative h-screen w-full  ">
-      <div className='flex items-center justify-center absolute w-1/2  bottom-[80px]  z-40'>
+      <div className='flex items-center justify-center absolute w-1/2  bottom-[80px]  z-10'>
       <div className=' py-2 px-3  backdrop-blur-sm bg-white/5 backdrop-contrast-100 backdrop-brightness-100  flex items-center justify-center  shadow-sm border-2 border-white/5 rounded-lg'>
         <div className='flex items-center gap-1  '> 
            {cartItems.map((item, index) => (

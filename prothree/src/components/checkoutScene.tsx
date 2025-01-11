@@ -1,6 +1,6 @@
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { CardItem } from "../types/types";
 import Model from "./model";
 import RoomContainer from "./roomContainer";
@@ -78,7 +78,10 @@ interface MultiSofaSceneProps {
     cartItems: CardItem[];
     selectedSofaIndex: number | null;
   }
+
+
 export const CheckOutScene = ({ cartItems ,selectedSofaIndex  }: MultiSofaSceneProps) => {
+  const [isLoading, setIsLoading] = useState(true);
   const positions: [number, number, number][] = [
     [0.2, -2.492, -8],
     [-11.3, -2.492, 0 ],
@@ -100,9 +103,14 @@ export const CheckOutScene = ({ cartItems ,selectedSofaIndex  }: MultiSofaSceneP
 
   const targetPosition = selectedSofaIndex !== null ? cameraPositions[selectedSofaIndex] : null;
     return (
-      <div className="w-full h-full">
-        <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 9], fov:45 }}>
-          <Suspense fallback={null}>
+      <div className="w-full h-full bg-[#09090b]">
+           {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-[#09090b] z-20">
+          <div className="w-8 h-8 border-2 border-t-white/50 border-white/20 rounded-full animate-spin" />
+        </div>
+      )}
+        <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 9], fov:45 }} onCreated={()=> setIsLoading(false)}>
+        <Suspense fallback={null}>
           <CameraController 
             targetPosition={targetPosition} 
             selectedIndex={selectedSofaIndex}
