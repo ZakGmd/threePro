@@ -7,10 +7,10 @@ import CustomizeMaterial from './components/customizeMaterial';
 import Landing from './components/landing';
 import CartIcon from './components/cartIcon';
 import { calculateSofaPrice, sofaNodeMappings, sofas } from './utils/utilities';
-import { CurrentPrice } from './components/priceComponent';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import CheckoutPage from './components/checkOut';
+import CurrentPrice from './components/priceComponent';
 
 
 

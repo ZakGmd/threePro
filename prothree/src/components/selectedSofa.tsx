@@ -10,7 +10,7 @@ export default function SelectSofa({ selectedSofa ,setSofa,hasAnimationPlayed ,s
   const container = useRef(null) ;
   
   useGSAP(()=>{
-    if(hasAnimationPlayed) return ;
+   
 
 
     const tl = gsap.timeline() ;
@@ -37,7 +37,7 @@ export default function SelectSofa({ selectedSofa ,setSofa,hasAnimationPlayed ,s
     },{
      y: 0 ,
       autoAlpha:1 ,
-      stagger: 0.12 ,
+      stagger: 0.097 ,
       duration: 0.4 ,
       ease: 'power4.in'
     },"<").from(".btns",{

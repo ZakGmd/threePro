@@ -2,21 +2,12 @@ import { MaterialCustomization } from '../types/types';
 import { calculateSofaPrice } from '../utils/utilities';
 
 
-export const CurrentPrice: React.FC<{ 
-    material: MaterialCustomization; 
-    basePrice: number; 
-  }> = ({ material, basePrice }) => {
-    const price = calculateSofaPrice(
-      basePrice,
-      {
-        frame: material.frame || '',
-        seatColor: material.seatColor || '',
-        material: material.material || ''
-      }
+export default function CurrentPrice({material , basePrice } :{material: MaterialCustomization, basePrice: number;} ){
+    const price = calculateSofaPrice(basePrice,{ frame: material.frame || '',seatColor: material.seatColor || '',material: material.material || ''}
     );
     
     return (
-      <div className="flex justify-between items-center gap-1 pt-1">
+      <div className="pricing flex justify-between items-center gap-1 pt-1">
         <div className='flex gap-1 font-space-mono  items-baseline text-sm text-black/40'>
             <div > Base price:</div>
             <div className='font-inter'> ${basePrice.toLocaleString()}</div>

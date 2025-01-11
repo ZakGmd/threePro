@@ -1,12 +1,61 @@
 import { CustomizeViewProps } from "../types/types";
 import { sofas } from "../utils/utilities";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import SplitText from "gsap-trial/SplitText" ;
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(SplitText) ;
 
 
 
 
   export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material , handleAddToCart ,PriceComponent}: CustomizeViewProps) {
+    const container = useRef(null) ;
     
-    
+    useGSAP(()=>{
+     
+  
+  
+      const tl = gsap.timeline() ;
+      var splitSecondText = new SplitText('.secondText',{type: "words"}) ;
+  
+      tl.from(".firstText",{
+          y: 20,
+          autoAlpha: 0,
+          duration: 1 ,
+           ease: 'power3.out'
+        }).from(splitSecondText.words ,{
+          duration: 0.58,    
+          autoAlpha: 0 ,
+          stagger: 0.099 ,
+          ease: 'power2.in'
+      },'-=0.75').from(".thirdText",{
+        y: 20,
+        autoAlpha: 0,
+        duration: 0.5 ,
+        ease: 'power3.out'
+      },"-=0.4").fromTo(".options",{
+        x: -10 ,
+        autoAlpha: 0 ,
+      },{
+       x: 0 ,
+        autoAlpha:1 ,
+        stagger: 0.045 ,
+        duration: 0.4 ,
+        ease: 'power4.in'
+      },"<").from(".pricing",{
+        autoAlpha: 0,
+        duration: 0.5 ,
+        ease: 'power2.inOut',
+      }).from(".btns",{
+        y:10 ,
+        autoAlpha: 0,
+        duration: 0.5 ,
+        ease: 'power2.inOut',
+      },"-=0.5")
+       
+  },{scope: container})
 
     const frames = [
       {
@@ -101,27 +150,28 @@ import { sofas } from "../utils/utilities";
       }, 
       
     ]
+
    
     return (
-      <div className='flex flex-col items-baseline pt-[160px] gap-[180px] '>
+      <div className='flex flex-col items-baseline pt-[160px] gap-[180px] ' ref={container}>
         <div className='flex flex-col items-baseline gap-2'>
-          <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
+          <div className='firstText   text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
             Customize your sofa
           </div>
-          <div className='text-[32px] tracking-[-0.32px] leading-normal font-inter'>
+          <div className='secondText text-[32px] tracking-[-0.32px] leading-normal font-inter'>
             Make it yours
           </div>
         </div>
         <div className='flex flex-col gap-7 w-full'>
           <div className='flex flex-col gap-2'>
-            <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
+            <div className='thirdText  text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
                frame material 
             </div>
             <div className='flex gap-3'>
               {frames.map((frame) => (
                 <div
                   key={frame.id}
-                  className={`px-2 py-1 text-[14px] font-inter tracking-wide 
+                  className={` options px-2 py-1 text-[14px] font-inter tracking-wide 
                      ${frame.name === 'Gold' ? 'px-[11px] hover:bg-[#d4af376e]  ' : frame.name === 'Marble' ? 'hover:bg-[#e1e4e2]': 'hover:bg-[#a1662f5e]'}
                      ${material.frame === frame.color ? `bg-[${frame.color}] shadow-md` : 'bg-trasparent'}
                      hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
@@ -135,14 +185,14 @@ import { sofas } from "../utils/utilities";
             </div>
           </div>
           <div className='flex flex-col gap-2'>
-            <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
+            <div className='thirdText  text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
                seat color 
             </div>
             <div className='flex items-center gap-3'>
               {seatColors.map((seat) => (
                 <div
                   key={seat.id}
-                  className={`
+                  className={`options
                   flex items-center font-inter  gap-1 px-2 py-1 
                   ${seat.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : seat.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} 
                    ${material.seatColor === seat.color ? `  shadow-md` : ''}
@@ -164,14 +214,14 @@ import { sofas } from "../utils/utilities";
             </div>
           </div>
           <div className='flex flex-col gap-2'>
-            <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
+            <div className='thirdText   text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
                pillow color 
             </div>
             <div className='flex items-center gap-3'>
               {pillowColors.map((pillow) => (
                 <div
                   key={pillow.name}
-                  className={`flex items-center font-inter   gap-1 px-2 py-1  
+                  className={`options flex items-center font-inter   gap-1 px-2 py-1  
                     ${pillow.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : pillow.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} 
                      ${material.pillowColor === pillow.color ? `  shadow-md` : ''}
                     hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
@@ -192,7 +242,7 @@ import { sofas } from "../utils/utilities";
             </div>
           </div>
           <div className='flex flex-col gap-2'>
-            <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
+            <div className='thirdText text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
                embroidery color 
             </div>
             <div className='flex items-center gap-3'>
@@ -200,7 +250,7 @@ import { sofas } from "../utils/utilities";
                 <div
                   key={embroidery.name}
                   style={{ backgroundColor: material.embroideryColor === embroidery.color ? embroidery.bgClr : '' }}
-                  className={`flex items-center   font-inter  gap-1 px-2 py-1  
+                  className={`options flex items-center   font-inter  gap-1 px-2 py-1  
                     ${embroidery.name === 'Metallic Gold' ? ' hover:bg-[#d4af3762] ' : embroidery.name === 'Cool Silver' ? 'hover:bg-[#c0c0c063]': 'hover:bg-[#d6c9af67]'} 
                      ${material.embroideryColor === embroidery.color ? `  shadow-md` : ''}
                     hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
@@ -221,14 +271,14 @@ import { sofas } from "../utils/utilities";
             </div>
           </div>
           <div className='flex flex-col gap-2'>
-            <div className='text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
+            <div className='thirdText  text-black/60 text-[14px] font-normal uppercase leading-normal font-space-mono'>
               Sofa Material
             </div>
             <div className='flex items-center gap-3'>
               {materiales.map((material,index) => (
                <div 
                  key={material.id}
-                 className="flex items-center gap-1 font-inter hover:shadow-md font-normal  rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all px-2 py-1"
+                 className="options flex items-center gap-1 font-inter hover:shadow-md font-normal  rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all px-2 py-1"
                  onClick={() => materialChange('material', material.name)}
                  
 
@@ -239,8 +289,8 @@ import { sofas } from "../utils/utilities";
               ))}
             </div>
           </div>
-          <PriceComponent material={material} basePrice={sofas[selectedSofa.id - 1].basePrice} />
-          <div className='my-8 flex justify-between items-center w-full'>
+          <PriceComponent material={material} basePrice={sofas[selectedSofa.id - 1].basePrice}  />
+          <div className='btns my-8 flex justify-between items-center w-full'>
             <button
               onClick={onBack}
               className='py-1 px-5 border border-black rounded-md hover:bg-black/5 transition-colors'
@@ -252,7 +302,7 @@ import { sofas } from "../utils/utilities";
             onClick={handleAddToCart}
               className='py-1 px-5 bg-black border border-transparent shadow-md text-white rounded-md hover:bg-black/80 transition-colors'
             >
-              Add to Cart
+             <span>Add to Cart</span>
             </button>
           </div>
         </div>
