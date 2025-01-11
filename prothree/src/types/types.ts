@@ -58,6 +58,8 @@ export interface CustomizeViewProps {
     material: MaterialCustomization; 
     basePrice: number;
   }>;
+  hasAnimationPlayed: boolean;
+  setHasAnimationPlayed: (value: boolean) => void;
 }
 export interface custumizeSelectProps {
     setSofa: (index: number) => void;
@@ -128,7 +130,10 @@ export interface FormErrors {
 }
 
 
-
+export interface AnimationState {
+  select: boolean;
+  customize: boolean;
+}
  
 
   

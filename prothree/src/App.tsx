@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Scene from './components/scene'
-import { CardItem, SofaNode} from './types/types';
+import { AnimationState, CardItem, SofaNode} from './types/types';
 import SelectSofa from './components/selectedSofa';
 import CustomizeMaterial from './components/customizeMaterial';
 import Landing from './components/landing';
@@ -36,7 +36,10 @@ function App() {
     }
     });
   const [cartItems, setCartItems] = useState<CardItem[]>([]);
-  const [hasAnimationPlayed, setHasAnimationPlayed] = useState(false)
+  const [animationStates, setAnimationStates] = useState<AnimationState>({
+    select: false,
+    customize: false
+  });
   const finalPrice = calculateSofaPrice(
       sofas[selectedSofa].basePrice,
       {
@@ -91,8 +94,9 @@ function App() {
             onBack={() => setCurrentStep('landing')}
             sofas={sofas}
             selectedSofa={selectedSofa}
-            hasAnimationPlayed={hasAnimationPlayed}
-            setHasAnimationPlayed={setHasAnimationPlayed}
+            hasAnimationPlayed={animationStates.select}
+            setHasAnimationPlayed={(value: boolean) => 
+              setAnimationStates(prev => ({ ...prev, customize: value }))}
           />
         )
         case 'customize':
@@ -104,6 +108,9 @@ function App() {
             material={materiales.customization}   
             handleAddToCart={handleAddToCart}  
              PriceComponent={CurrentPrice}   
+             hasAnimationPlayed={animationStates.select}
+             setHasAnimationPlayed={(value: boolean) => 
+               setAnimationStates(prev => ({ ...prev, select: value }))}
           />
         )
     }

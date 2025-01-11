@@ -10,10 +10,11 @@ gsap.registerPlugin(SplitText) ;
 
 
 
-  export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material , handleAddToCart ,PriceComponent}: CustomizeViewProps) {
+  export default function CustomizeMaterial({ selectedSofa, onBack ,materialChange , material , handleAddToCart ,PriceComponent ,hasAnimationPlayed ,setHasAnimationPlayed }: CustomizeViewProps) {
     const container = useRef(null) ;
     
     useGSAP(()=>{
+      if(hasAnimationPlayed) return ;
      
   
   
@@ -53,6 +54,7 @@ gsap.registerPlugin(SplitText) ;
         autoAlpha: 0,
         duration: 0.5 ,
         ease: 'power2.inOut',
+        onComplete: ()=> setHasAnimationPlayed(true) 
       },"-=0.5")
        
   },{scope: container})
@@ -174,7 +176,8 @@ gsap.registerPlugin(SplitText) ;
                   className={` options px-2 py-1 text-[14px] font-inter tracking-wide 
                      ${frame.name === 'Gold' ? 'px-[11px] hover:bg-[#d4af376e]  ' : frame.name === 'Marble' ? 'hover:bg-[#e1e4e2]': 'hover:bg-[#a1662f5e]'}
                      ${material.frame === frame.color ? `bg-[${frame.color}] shadow-md` : 'bg-trasparent'}
-                     hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
+                      ${hasAnimationPlayed ? 'visible' : 'invisible'}
+                     hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all `}
                   onClick={() => {
                     materialChange('frame', frame.color)
                     materialChange('texture', frame.texture)
@@ -196,6 +199,7 @@ gsap.registerPlugin(SplitText) ;
                   flex items-center font-inter  gap-1 px-2 py-1 
                   ${seat.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : seat.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} 
                    ${material.seatColor === seat.color ? `  shadow-md` : ''}
+                    ${hasAnimationPlayed ? 'visible' : 'invisible'}
                   hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
                   style={{
                     backgroundColor: material.seatColor === seat.color ? seat.bgClr : ''
@@ -224,6 +228,7 @@ gsap.registerPlugin(SplitText) ;
                   className={`options flex items-center font-inter   gap-1 px-2 py-1  
                     ${pillow.name === 'Emerald Green' ? ' hover:bg-[#022c2238] ' : pillow.name === 'Dark Charcoal' ? 'hover:bg-[#0c0a0938]': 'hover:bg-[#d6c9af67]'} 
                      ${material.pillowColor === pillow.color ? `  shadow-md` : ''}
+                      ${hasAnimationPlayed ? 'visible' : 'invisible'}
                     hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
                   style={{ backgroundColor: material.pillowColor === pillow.color ? pillow.bgClr : '' ,
                   
@@ -253,6 +258,7 @@ gsap.registerPlugin(SplitText) ;
                   className={`options flex items-center   font-inter  gap-1 px-2 py-1  
                     ${embroidery.name === 'Metallic Gold' ? ' hover:bg-[#d4af3762] ' : embroidery.name === 'Cool Silver' ? 'hover:bg-[#c0c0c063]': 'hover:bg-[#d6c9af67]'} 
                      ${material.embroideryColor === embroidery.color ? `  shadow-md` : ''}
+                      ${hasAnimationPlayed ? 'visible' : 'invisible'}
                     hover:shadow-md font-normal rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all`}
                   onClick={() => materialChange('embroideryColor', embroidery.color)}
                 >
@@ -278,7 +284,10 @@ gsap.registerPlugin(SplitText) ;
               {materiales.map((material,index) => (
                <div 
                  key={material.id}
-                 className="options flex items-center gap-1 font-inter hover:shadow-md font-normal  rounded-full border cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all px-2 py-1"
+                 className={` ${hasAnimationPlayed ? 'visible' : 'invisible'}
+                            options flex items-center gap-1 font-inter hover:shadow-md font-normal  rounded-full border 
+                            cursor-pointer border-black/20 hover:border-black/40 duration-300 transition-all px-2 py-1`
+                          }
                  onClick={() => materialChange('material', material.name)}
                  
 

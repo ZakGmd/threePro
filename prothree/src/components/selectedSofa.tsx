@@ -10,7 +10,7 @@ export default function SelectSofa({ selectedSofa ,setSofa,hasAnimationPlayed ,s
   const container = useRef(null) ;
   
   useGSAP(()=>{
-   
+    if(hasAnimationPlayed) return ;
 
 
     const tl = gsap.timeline() ;
