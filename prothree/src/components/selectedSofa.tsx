@@ -91,7 +91,7 @@ export default function SelectSofa({ selectedSofa ,setSofa,hasAnimationPlayed ,s
               <div onClick={onBack} className=' py-1 px-5   text-black border-black border cursor-pointer rounded-md hover:bg-black/5 transition-colors '  >
                Back
               </div>
-              <div onClick={onNext} className=' py-1 px-5 border border-transparent  bg-black text-white cursor-pointer rounded-md'  >
+              <div onClick={onNext} className=' py-1 px-5 border border-transparent shadow-md bg-black text-white cursor-pointer rounded-md'  >
                Next
               </div>
           </div>

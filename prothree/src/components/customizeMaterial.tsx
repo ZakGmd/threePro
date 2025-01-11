@@ -250,7 +250,7 @@ import { sofas } from "../utils/utilities";
            
             <button
             onClick={handleAddToCart}
-              className='py-1 px-5 bg-black border border-transparent text-white rounded-md hover:bg-black/80 transition-colors'
+              className='py-1 px-5 bg-black border border-transparent shadow-md text-white rounded-md hover:bg-black/80 transition-colors'
             >
               Add to Cart
             </button>

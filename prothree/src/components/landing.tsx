@@ -14,7 +14,7 @@ export default function Landing({onNext}:LandingProps) {
             </div>
             <div className="flex items-center gap-3">
                 <div className='py-1 px-5 border border-black rounded-md hover:bg-black/5 transition-colors cursor-pointer'>More</div>
-                <div onClick={onNext} className='py-1 px-5 border border-transparent bg-black text-white border-black rounded-md hover:bg-black/90 transition-colors cursor-pointer'>Select</div>
+                <div onClick={onNext} className='py-1 px-5 border shadow-md border-transparent bg-black text-white border-black rounded-md hover:bg-black/90 transition-colors cursor-pointer'>Select</div>
             </div>
 
           </div>
