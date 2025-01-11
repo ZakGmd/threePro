@@ -8,8 +8,10 @@ gsap.registerPlugin(SplitText) ;
 
 export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onBack }: custumizeSelectProps){
   const container = useRef(null) ;
-
+  const isAnimated = false ;
   useGSAP(()=>{
+     if(isAnimated) return ;
+
     const tl = gsap.timeline() ;
     var splitSecondText = new SplitText('.secondText',{type: "words"}) ;
 
@@ -19,7 +21,7 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onB
         duration: 1 ,
          ease: 'power3.out'
       }).from(splitSecondText.words ,{
-        duration: 0.6,    
+        duration: 0.58,    
         autoAlpha: 0 ,
         stagger: 0.099 ,
         ease: 'power2.in'
@@ -81,10 +83,10 @@ export default function SelectSofa({ selectedSofa ,setSofa , sofas , onNext ,onB
          </div>
          <div className='mt-10 flex w-full justify-between '>
           <div className="btns flex items-center w-full justify-between">
-              <div onClick={onBack} className=' py-3 px-4  text-black border-black border cursor-pointer rounded-[48px] hover:bg-black/5 transition-colors '  >
+              <div onClick={onBack} className=' py-1 px-5   text-black border-black border cursor-pointer rounded-md hover:bg-black/5 transition-colors '  >
                Back
               </div>
-              <div onClick={onNext} className=' py-3 px-4 bg-black text-white cursor-pointer rounded-[48px]'  >
+              <div onClick={onNext} className=' py-1 px-5 border border-transparent  bg-black text-white cursor-pointer rounded-md'  >
                Next
               </div>
           </div>

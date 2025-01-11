@@ -243,14 +243,14 @@ import { sofas } from "../utils/utilities";
           <div className='my-8 flex justify-between items-center w-full'>
             <button
               onClick={onBack}
-              className='py-3 px-4 border border-black rounded-[48px] hover:bg-black/5 transition-colors'
+              className='py-1 px-5 border border-black rounded-md hover:bg-black/5 transition-colors'
             >
               Back
             </button>
            
             <button
             onClick={handleAddToCart}
-              className='py-3 px-4 bg-black text-white rounded-[48px] hover:bg-black/80 transition-colors'
+              className='py-1 px-5 bg-black border border-transparent text-white rounded-md hover:bg-black/80 transition-colors'
             >
               Add to Cart
             </button>

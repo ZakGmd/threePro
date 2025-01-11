@@ -3,6 +3,7 @@ import { OrbitControls } from '@react-three/drei';
 import { SofaCardProps} from '../types/types';
 import ModelCard from './modelCard';
 import { Suspense, useState } from 'react';
+import { getDescriptionText } from '@/utils/utilities';
 
 export default function SofaCard({ sofa, materials, onDelete }: SofaCardProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +49,7 @@ export default function SofaCard({ sofa, materials, onDelete }: SofaCardProps) {
         <div className="flex items-center justify-between w-full">
           <div className="flex flex-col gap-1 items-start font-inter text-[#000000]">
             <div className="font-medium">{sofa.name}</div>
-            <div className="text-[14px] leading-5">Classic Victorian sofa with light oak frame <br /> and khaki velvet. Handcrafted wooden details.</div>
+            <div className="text-[14px] leading-5 max-w-[278px]">{getDescriptionText(materials.customization)}</div>
           </div>
           <div className="flex flex-col items-start gap-1 justify-between font-inter text-[#000000]">
             <div className="flex flex-col items-baseline">

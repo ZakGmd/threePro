@@ -1,4 +1,4 @@
-import { Sofa, SofaNodeMappings } from "../types/types";
+import { MaterialCustomization, Sofa, SofaNodeMappings } from "../types/types";
 import * as THREE from 'three';
 import gsap from 'gsap'
 
@@ -136,3 +136,20 @@ export const animateColorChange = (node: THREE.Mesh, targetColorHex: string, mat
     ease: "power2.inOut"
   });
 };
+export function getMaterialName(hexCode: string | undefined): string {
+  if (!hexCode) return '';
+  const frameMatch = materialPrices.frames[hexCode as keyof typeof materialPrices.frames];
+  if (frameMatch) return frameMatch.name;
+  const seatMatch = materialPrices.seats[hexCode as keyof typeof materialPrices.seats];
+  if (seatMatch) return seatMatch.name;
+  
+  return hexCode; 
+}
+
+export function getDescriptionText(materials: MaterialCustomization): string {
+  const frameName = getMaterialName(materials.frame);
+  const seatName = getMaterialName(materials.seatColor);
+  const materialType = materials.material || 'Velvet'; 
+  
+  return `Classic Victorian sofa with ${frameName} frame  and ${seatName} ${materialType}. Handcrafted ${frameName} details`;
+}

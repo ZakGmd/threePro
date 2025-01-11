@@ -40,7 +40,7 @@ export default function  AddToCart ({ onClose, state, cartItems, onDeleteItem }:
                     <div className=" font-medium ">${total.toLocaleString()}</div>
                 </div>
                 <div className="flex flex-col items-start justify-start w-full font-inter gap-2">
-                     <div className="text-[14px] text-[#0c0a0993]  font-space-mono">Tax and shipping not included </div>
+                     <div className="text-[14px] text-[#0c0a09c0]  font-space-mono">Tax and shipping not included </div>
                      <div onClick={handleContinue} className=" py-4 text-center w-full shadow-[0_1px_3px_rgba(0,0,0,0.4),inset_0px_1.5px_0px_rgba(255,255,255,0.3)]  bg-black contrast-125 text-white rounded-md hover:bg-black/90 transition-all duration-300 cursor-pointer">Continue</div>
                 </div>
             </div>
