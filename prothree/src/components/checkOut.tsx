@@ -163,7 +163,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
       </div>
       
       <div className="w-1/2 font-inter flex flex-col h-full items-center justify-center overflow-y-auto border-l border-gray-200">
-      {submited ? <PaymentSuccess /> : (
+      {submited ? <PaymentSuccess total={total} /> : (
           <div className='flex flex-col items-start max-w-[680px] gap-5'>
          
           <div className={`w-full py-3 flex items-center justify-center gap-1 bg-[#0A090B] text-white rounded-[10px] transition-all duration-300 cursor-pointer `}>

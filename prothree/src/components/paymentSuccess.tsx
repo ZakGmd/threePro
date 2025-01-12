@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 
-export default function PaymentSuccess(){
+export default function PaymentSuccess({total} : {total : number}){
     const [currentTime, setCurrentTime] = useState(new Date());
 
     const formatTime = (date : Date) => {
@@ -25,7 +25,7 @@ export default function PaymentSuccess(){
                 </div>
                 <div className="flex flex-col items-center gap-1 w-full">
                     <div className="text-[14px] tracking-[0.12px] leading-5 text-black/70">Payment Success!</div>
-                    <div className="font-medium text-[20px]">USD 24,000</div>
+                    <div className="font-medium text-[20px]">USD {total.toLocaleString()}</div>
                 </div>
             </div>
             <div className="px-4 py-5 flex bg-[#F9F9F9] flex-col items-start gap-4 rounded-xl w-full">
@@ -50,7 +50,7 @@ export default function PaymentSuccess(){
                 </div>
                 <div className="flex items-center justify-between w-full ">
                     <div className="text-black/40">Total Payment</div>
-                    <div className="font-medium text-[#0A090B]">$24,000</div>
+                    <div className="font-medium text-[#0A090B]">${total.toLocaleString()}</div>
 
                 </div>
             </div>
