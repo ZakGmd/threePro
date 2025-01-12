@@ -7,6 +7,17 @@ import RoomContainer from "./roomContainer";
 import FirstVase from "./firtVase";
 import gsap from "gsap";
 
+const formatTime = (date : Date) => {
+  return new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  }).format(date);
+};
 interface MultiSofaSceneProps {
     cartItems: CardItem[];
     selectedSofaIndex: number | null;
