@@ -38,7 +38,7 @@ export default function PaymentSuccess({total} : {total : number}){
                     <div className="flex items-center justify-between w-full">
                         <div className="text-black/40">Payment Status</div>
                         <div className="flex items-center gap-1">
-                          <svg width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#3FD093" stroke-width="1"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM7.53044 11.9697C7.23755 11.6768 6.76268 11.6768 6.46978 11.9697C6.17689 12.2626 6.17689 12.7374 6.46978 13.0303L9.46978 16.0303C9.76268 16.3232 10.2376 16.3232 10.5304 16.0303L17.5304 9.03033C17.8233 8.73744 17.8233 8.26256 17.5304 7.96967C17.2375 7.67678 16.7627 7.67678 16.4698 7.96967L10.0001 14.4393L7.53044 11.9697Z" fill="#22c55e"></path></svg>
+                          <svg width="18px" className="mb-[1px]" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#3FD093" stroke-width="1"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM7.53044 11.9697C7.23755 11.6768 6.76268 11.6768 6.46978 11.9697C6.17689 12.2626 6.17689 12.7374 6.46978 13.0303L9.46978 16.0303C9.76268 16.3232 10.2376 16.3232 10.5304 16.0303L17.5304 9.03033C17.8233 8.73744 17.8233 8.26256 17.5304 7.96967C17.2375 7.67678 16.7627 7.67678 16.4698 7.96967L10.0001 14.4393L7.53044 11.9697Z" fill="#22c55e"></path></svg>
                           <div className="font-medium text-[#0A090B]">Success</div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@ export default function PaymentSuccess({total} : {total : number}){
                 <svg width="32px" height="32px" stroke-width="1.3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000B3"><path d="M9 6L15 12L9 18" stroke="#000000B3" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </div>
             </div>
-            <div className="mt-10 py-3 px-5 w-full flex items-center justify-center gap-2 rounded-lg bg-[#0A090B] text-white text-center contrast-125">
+            <div className="mt-10 py-3 px-5 w-full flex items-center justify-center gap-2 rounded-lg bg-[#0A090B] text-white text-center cursor-pointer contrast-125">
                 <div>Explore More Elegance</div>
                 <svg className="mt-[1px]" width="18px" height="18px" viewBox="0 0 24 24" stroke-width="1.3" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 12L21 12M21 12L12.5 3.5M21 12L12.5 20.5" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>

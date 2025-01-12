@@ -20,8 +20,8 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
     cardCvc: ''
   });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submited , setSubmited] = useState<boolean>(true)
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submited , setSubmited] = useState<boolean>(false)
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
@@ -128,6 +128,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
       }));
     } finally {
       setIsSubmitting(false);
+      setSubmited(true)
     }
   };
 
