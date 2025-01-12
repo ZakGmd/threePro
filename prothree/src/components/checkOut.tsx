@@ -21,7 +21,7 @@ export default function CheckoutPage({ cartItems }: CheckoutProps){
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submited , setSubmited] = useState<boolean>(false)
+  const [submited , setSubmited] = useState<boolean>(true)
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
