@@ -1,9 +1,21 @@
+import { useState } from "react";
 
 
 
 export default function PaymentSuccess(){
+    const [currentTime, setCurrentTime] = useState(new Date());
 
-    
+    const formatTime = (date : Date) => {
+        return new Intl.DateTimeFormat('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: true,
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        }).format(date);
+      };
     return (
         <>
         <div className="flex flex-col font-inter items-start gap-2 h-[500px] max-w-[580px] w-full ">
@@ -32,7 +44,7 @@ export default function PaymentSuccess(){
                     </div>
                     <div className="flex items-center justify-between w-full">
                         <div className="text-black/40">Payment Time</div>
-                        <div className="font-medium text-[#0A090B]">25-02-2025 ,13:22:16</div>
+                        <div className="font-medium text-[#0A090B]">{formatTime(currentTime)}</div>
                     </div>
 
                 </div>
