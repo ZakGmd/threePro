@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function PaymentSuccess({total} : {total : number}){
     const [currentTime, setCurrentTime] = useState(new Date());
+    const navigate = useNavigate();
+    const handleContinue = () => {
+       
+        navigate('/');
+      };
 
     const formatTime = (date : Date) => {
         return new Intl.DateTimeFormat('en-US', {
@@ -68,7 +74,7 @@ export default function PaymentSuccess({total} : {total : number}){
                 <svg width="32px" height="32px" stroke-width="1.3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000B3"><path d="M9 6L15 12L9 18" stroke="#000000B3" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </div>
             </div>
-            <div className="mt-10 py-3 px-5 w-full flex items-center justify-center gap-2 rounded-lg bg-[#0A090B] text-white text-center cursor-pointer contrast-125">
+            <div onClick={handleContinue} className="mt-10 py-3 px-5 w-full flex items-center justify-center gap-2 rounded-lg bg-[#0A090B] text-white text-center cursor-pointer contrast-125">
                 <div>Explore More Elegance</div>
                 <svg className="mt-[1px]" width="18px" height="18px" viewBox="0 0 24 24" stroke-width="1.3" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 12L21 12M21 12L12.5 3.5M21 12L12.5 20.5" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
