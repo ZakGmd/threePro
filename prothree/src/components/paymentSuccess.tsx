@@ -56,8 +56,8 @@ export default function PaymentSuccess({total} : {total : number}){
             </div>
             <div className="px-4 py-5 flex bg-[#F9F9F9] hover:bg-[#E8E8E8]/50 transition-all duration-300 cursor-pointer items-center justify-between rounded-xl w-full">
                 <div className="flex items-center gap-4 w-full">
-                    <div className="flex items-center justify-center bg-black/5 rounded-full w-[48px] h-[48px]">
-                    <svg width="32px" height="32px" stroke-width="1.2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#000000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 9C9 5.49997 14.5 5.5 14.5 9C14.5 11.5 12 10.9999 12 13.9999" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 18.01L12.01 17.9989" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>       
+                    <div className="flex items-center justify-center bg-black/5 rounded-full w-[52px] h-[48px]">
+                    <svg width="32px" height="32px" stroke-width="0.8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000B3"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#000000B3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 9C9 5.49997 14.5 5.5 14.5 9C14.5 11.5 12 10.9999 12 13.9999" stroke="#000000B3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 18.01L12.01 17.9989" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>       
                     </div>
                     <div className="flex flex-col items-start gap-1 w-full">
                         <div className=" tracking-[-0.12px] ">Something Wrong With Your Payment?</div>
@@ -65,7 +65,7 @@ export default function PaymentSuccess({total} : {total : number}){
                     </div>
                 </div>
                 <div>
-                <svg width="32px" height="32px" stroke-width="1.3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M9 6L15 12L9 18" stroke="#000000" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg width="32px" height="32px" stroke-width="1.3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000B3"><path d="M9 6L15 12L9 18" stroke="#000000B3" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </div>
             </div>
             <div className="mt-10 py-3 px-5 w-full flex items-center justify-center gap-2 rounded-lg bg-[#0A090B] text-white text-center contrast-125">
